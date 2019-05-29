@@ -1,4 +1,5 @@
-$(function () {
+
+/*$(function () {
     $("#form_submit").bind("click", checkUser);
 });
 
@@ -34,6 +35,7 @@ function checkUser() {
         }
 
     })
-}
+}*/
+
 
 

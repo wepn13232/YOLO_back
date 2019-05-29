@@ -20,8 +20,10 @@ public class UserController {
     @Resource
     private UserServices userServices;
 
+
+
     @RequestMapping("/login")
-    public String tologin() {
+    public String login(){
         return "login";
     }
 
@@ -37,6 +39,7 @@ public class UserController {
             if (user.getUsername().equals("admin")) {
                 request.getSession().setAttribute("usersession", user);
                 json.put("user", "admin");
+                json.put("status","0");
             } else {
                 request.getSession().setAttribute("usersession", user);
                 json.put("user", user);
@@ -46,6 +49,7 @@ public class UserController {
 //            model.addAttribute("error", "账号或密码错误！");
             json.put("lg", "error");
         }
+
         return json.toJSONString();
     }
 
