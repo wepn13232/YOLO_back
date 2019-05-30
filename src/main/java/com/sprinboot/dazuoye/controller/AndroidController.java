@@ -1,6 +1,7 @@
 package com.sprinboot.dazuoye.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sprinboot.dazuoye.pojo.Forum;
 import com.sprinboot.dazuoye.pojo.Game;
 import com.sprinboot.dazuoye.pojo.ShopCar;
 import com.sprinboot.dazuoye.pojo.User;
@@ -98,6 +99,17 @@ public class AndroidController {
         List<ShopCar> shopCars = shopCarServices.findShopCarByUserName(username);
         jsonObject.put("shopCarsList", shopCars);
 //        System.out.println(shopCars);
+        return jsonObject.toJSONString();
+    }
+
+
+    //    显示游戏含有的帖子
+    @RequestMapping("/forumInfo")
+    @ResponseBody
+    public String forumInfo(@RequestParam Integer game_id) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        List<Forum> forumList = forumServices.findForumByGameId(game_id);
+        jsonObject.put("forumInfo",forumList);
         return jsonObject.toJSONString();
     }
 
