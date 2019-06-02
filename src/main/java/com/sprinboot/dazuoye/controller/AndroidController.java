@@ -47,8 +47,9 @@ public class AndroidController {
         if (user != null) {
             /*request.getSession().setAttribute("session",user);
             json.put("session",user);*/
-            json.put("user", user);
-            json.put("status", "success");
+            json.put("username", user.getUsername());
+            json.put("password", user.getPassword());
+            json.put("cashLeft", user.getCashLeft());
         }
         return json.toJSONString();
     }
