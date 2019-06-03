@@ -54,19 +54,16 @@ public class AndroidController {
         return json.toJSONString();
     }
 
-    @RequestMapping(value = "/finduser")
+//    用户注册
+    @RequestMapping("/aRegister")
     @ResponseBody
-    public String finduser() throws Exception {
-        JSONObject json = new JSONObject();
-        User user = userServices.getUser("admin", "123");
-        if (user != null) {
-            /*request.getSession().setAttribute("session",user);
-            json.put("session",user);*/
-            json.put("user", user);
-
-        }
-        return json.toJSONString();
+    public String aRegister(@RequestParam String username,@RequestParam String password) throws Exception {
+        JSONObject jsonObject=new JSONObject();
+        userServices.addUser(username,password);
+        jsonObject.put("info","Success");
+        return jsonObject.toJSONString();
     }
+
 
 
     //查询所有游戏（用于商城页和论坛页）
