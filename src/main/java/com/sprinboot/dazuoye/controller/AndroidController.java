@@ -111,4 +111,18 @@ public class AndroidController {
         return jsonObject.toJSONString();
     }
 
+    //账户充值
+    @RequestMapping("/userCharge")
+    @ResponseBody
+    public String userCharge(@RequestParam int cashCharge, @RequestParam String username) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        if (userServices.chargeMoney(cashCharge, username) >= 1) {
+            jsonObject.put("charge", "success");
+        } else {
+            jsonObject.put("charge", "error");
+        }
+        return jsonObject.toJSONString();
+    }
+
+
 }
