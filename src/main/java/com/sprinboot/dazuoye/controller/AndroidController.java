@@ -54,16 +54,15 @@ public class AndroidController {
         return json.toJSONString();
     }
 
-//    用户注册
+    //    用户注册
     @RequestMapping("/aRegister")
     @ResponseBody
-    public String aRegister(@RequestParam String username,@RequestParam String password) throws Exception {
-        JSONObject jsonObject=new JSONObject();
-        userServices.addUser(username,password);
-        jsonObject.put("info","Success");
+    public String aRegister(@RequestParam String username, @RequestParam String password) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        userServices.addUser(username, password);
+        jsonObject.put("info", "Success");
         return jsonObject.toJSONString();
     }
-
 
 
     //查询所有游戏（用于商城页和论坛页）
@@ -107,7 +106,7 @@ public class AndroidController {
     public String forumInfo(@RequestParam Integer game_id) throws Exception {
         JSONObject jsonObject = new JSONObject();
         List<Forum> forumList = forumServices.findForumByGameId(game_id);
-        jsonObject.put("forumInfo",forumList);
+        jsonObject.put("forumInfo", forumList);
         return jsonObject.toJSONString();
     }
 
@@ -121,6 +120,17 @@ public class AndroidController {
         } else {
             jsonObject.put("charge", "error");
         }
+        return jsonObject.toJSONString();
+    }
+
+
+    //    查询账户余额
+    @RequestMapping("/checkCashLeft")
+    @ResponseBody
+    public String checkCashLeft(@RequestParam String username) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        int cashLef = chargeServices.checkCashLeft(username);
+        jsonObject.put("cashLeft", cashLef);
         return jsonObject.toJSONString();
     }
 
