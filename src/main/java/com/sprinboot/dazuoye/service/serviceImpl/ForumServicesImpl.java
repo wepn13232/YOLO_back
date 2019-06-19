@@ -22,21 +22,21 @@ public class ForumServicesImpl implements ForumServices {
 
     //根据游戏id查看论坛帖子
     @Override
-    public List<Forum> findForumByGameId(int game_id)throws Exception {
+    public List<Forum> findForumByGameId(int game_id) throws Exception {
         return forumDao.findForumByGameId(game_id);
     }
 
     //根据帖子id查询帖子具体内容
     @Override
-    public Forum findForumByForumId(int id)throws Exception {
+    public Forum findForumByForumId(int id) throws Exception {
         return forumDao.findForumByForumId(id);
     }
 
 
-//    插入帖子（发表帖子）
+    //    插入帖子（发表帖子）
     @Override
-    public int submitForum(String forum_title, String forum_content,int game_id,String username) throws Exception {
-        Forum forum=new Forum();
+    public int submitForum(String forum_title, String forum_content, int game_id, String username) throws Exception {
+        Forum forum = new Forum();
         forum.setForum_title(forum_title);
         forum.setForum_content(forum_content);
         forum.setGame_id(game_id);
@@ -45,6 +45,12 @@ public class ForumServicesImpl implements ForumServices {
         forum.setDate(dateformat.format(date));
         forum.setUsername(username);
         return forumDao.submitForum(forum);
+    }
+
+    //    查询所有帖子
+    @Override
+    public List<Forum> findAllForum() throws Exception {
+        return forumDao.findAllForum();
     }
 
 

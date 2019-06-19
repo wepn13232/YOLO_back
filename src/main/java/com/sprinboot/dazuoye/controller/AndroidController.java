@@ -135,4 +135,15 @@ public class AndroidController {
     }
 
 
+    //    查询所有帖子
+    @RequestMapping("/allForum")
+    @ResponseBody
+    public String allforum() throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        List<Forum> forum = forumServices.findAllForum();
+        jsonObject.put("allforum", forum);
+        return jsonObject.toJSONString();
+    }
+
+
 }
