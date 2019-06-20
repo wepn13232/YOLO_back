@@ -22,4 +22,7 @@ public interface GameServices {
 
     //模糊查询游戏
     List<Game> selectGameByFormContent(String form_content)throws Exception;
+
+    //查询指定游戏
+    Game selectGame(int id) throws Exception;
 }

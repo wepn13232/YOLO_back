@@ -100,4 +100,9 @@ public class GameServicesImpl implements GameServices {
     public List<Game> selectGameByFormContent(String form_content) throws Exception {
         return gameMapper.selectGameByFormContent(form_content);
     }
+
+    @Override
+    public Game selectGame(int id) throws Exception {
+        return gameMapper.selectGame(id);
+    }
 }

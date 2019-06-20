@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -85,6 +91,32 @@ public class AndroidController {
         int ID = Integer.parseInt(id);
         List<Game> games = gameServices.selectGameById(ID);
         jsonObject.put("gameInfo", games);
+        return jsonObject.toJSONString();
+    }
+
+    //    添加购物车
+    @RequestMapping("/addShopOrder")
+    @ResponseBody
+    public String addShopOrder(@RequestParam int id,@RequestParam String username) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        Game game = gameServices.selectGame(id);
+        if (shopCarServices.findStatusByUserNameAndGameName(username,game.getGame_name())==null){
+            String timeStr1= LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            ShopCar shopCar = new ShopCar();
+            shopCar.setUsername(username);
+            shopCar.setGame_name(game.getGame_name());
+            shopCar.setGame_price(game.getGame_price());
+            shopCar.setDate(timeStr1);
+            shopCar.setStatus(0);
+            boolean flag = shopCarServices.addShopCar(shopCar);
+            if (flag = true){
+                jsonObject.put("addShopOrder","sucess");
+            }   else {
+                jsonObject.put("addShopOrder","error");
+            }
+        }   else {
+            jsonObject.put("addShopOrder","1");
+        }
         return jsonObject.toJSONString();
     }
 
