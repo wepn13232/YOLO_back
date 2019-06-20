@@ -80,9 +80,10 @@ public class AndroidController {
     //    游戏详情信息页（查询指定游戏信息）
     @RequestMapping("/gameInfo")
     @ResponseBody
-    public String gameInfo(@RequestParam Integer id) throws Exception {
+    public String gameInfo(@RequestParam String id) throws Exception {
         JSONObject jsonObject = new JSONObject();
-        List<Game> games = gameServices.selectGameById(id);
+        int ID = Integer.parseInt(id);
+        List<Game> games = gameServices.selectGameById(ID);
         jsonObject.put("gameInfo", games);
         return jsonObject.toJSONString();
     }
