@@ -127,6 +127,9 @@ public class AndroidController {
     public String orderList(@RequestParam String username) throws Exception {
         JSONObject jsonObject = new JSONObject();
         List<ShopCar> shopCars = shopCarServices.findShopCarByUserName(username);
+        for (int i=0;i<shopCars.size();i++){
+            shopCars.get(i).setGame_id(gameServices.selecIdByGameName(shopCars.get(i).getGame_name()));
+        }
         jsonObject.put("shopCarsList", shopCars);
 //        System.out.println(shopCars);
         return jsonObject.toJSONString();

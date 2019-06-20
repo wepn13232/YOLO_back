@@ -9,18 +9,20 @@ public class ShopCar {
     private Integer game_price;
     private String date;
     private Integer status;
+    private Integer game_id;
 
     public ShopCar() {
         super();
     }
 
-    public ShopCar(Integer id, String username, String game_name, Integer game_price, String date, Integer status) {
+    public ShopCar(Integer id, String username, String game_name, Integer game_price, String date, Integer status, Integer game_id) {
         this.id = id;
         this.username = username;
         this.game_name = game_name;
         this.game_price = game_price;
         this.date = date;
         this.status = status;
+        this.game_id = game_id;
     }
 
     public Integer getId() {
@@ -69,5 +71,13 @@ public class ShopCar {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getGame_id() {
+        return game_id;
+    }
+
+    public void setGame_id(Integer game_id) {
+        this.game_id = game_id;
     }
 }

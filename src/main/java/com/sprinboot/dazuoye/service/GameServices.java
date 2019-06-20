@@ -25,4 +25,7 @@ public interface GameServices {
 
     //查询指定游戏
     Game selectGame(int id) throws Exception;
+
+    //查询游戏id
+    int selecIdByGameName(String game_name)throws  Exception;
 }

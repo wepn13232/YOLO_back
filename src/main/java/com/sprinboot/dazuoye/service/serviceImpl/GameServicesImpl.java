@@ -105,4 +105,9 @@ public class GameServicesImpl implements GameServices {
     public Game selectGame(int id) throws Exception {
         return gameMapper.selectGame(id);
     }
+//查询游戏id
+    @Override
+    public int selecIdByGameName(String game_name) throws Exception {
+        return gameMapper.selecIdByGameName(game_name);
+    }
 }

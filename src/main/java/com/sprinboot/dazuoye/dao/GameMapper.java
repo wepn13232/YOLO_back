@@ -30,6 +30,10 @@ public interface GameMapper {
     @Select("select * from game where id=#{id}")
     List<Game> selectGameById(@Param("id") Integer id) throws Exception;
 
+    //根据游戏名字查询游戏id
+    @Select("select id from game where game_name=#{game_name}")
+    int selecIdByGameName(@Param("game_name") String game_name)throws  Exception;
+
     //模糊查询游戏
     @Select("select * from game where game_name like '%${form_content}%'")
     List<Game> selectGameByFormContent(@Param("form_content") String form_content)throws Exception;
