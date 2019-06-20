@@ -178,5 +178,29 @@ public class AndroidController {
         return jsonObject.toJSONString();
     }
 
+    //付款购买
+    @RequestMapping(value = "/buygame")
+    @ResponseBody
+    public  String buyGame(@RequestParam Integer id,@RequestParam Integer game_price,
+                           @RequestParam String name)throws Exception{
+        JSONObject json = new JSONObject();
+        String username=name;
+        //查出余额
+        int cashLeft = chargeServices.checkCashLeft(username);
+        if(cashLeft>=game_price){
+            if (shopCarServices.modifyShopCar(id,new Date())){
+                int latercash=cashLeft-game_price;
+                //更新余额
+                shopCarServices.modifyCashLeft(username,latercash);
+                json.put("msg","success");
+            }else {
+                json.put("msg","error");
+            }
+        }else {
+            json.put("msg","less");
+        }
+        return json.toJSONString();
+    }
+
 
 }
