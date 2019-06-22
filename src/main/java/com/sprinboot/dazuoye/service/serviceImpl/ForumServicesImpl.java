@@ -32,6 +32,11 @@ public class ForumServicesImpl implements ForumServices {
         return forumDao.findForumByForumId(id);
     }
 
+    @Override
+    public List<Forum> findForum(int id) throws Exception {
+        return forumDao.findForum(id);
+    }
+
 
     //    插入帖子（发表帖子）
     @Override

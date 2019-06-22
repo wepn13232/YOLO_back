@@ -181,6 +181,16 @@ public class AndroidController {
         return jsonObject.toJSONString();
     }
 
+    //    查询指定帖子
+    @RequestMapping("/selectForum")
+    @ResponseBody
+    public String selectForum(@RequestParam int id) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        List<Forum> forum = forumServices.findForum(id);
+        jsonObject.put("selectForum", forum);
+        return jsonObject.toJSONString();
+    }
+
     //付款购买
     @RequestMapping(value = "/buygame")
     @ResponseBody

@@ -19,6 +19,10 @@ public interface ForumDao {
     @Select("select * from forum where id=#{id}")
     Forum findForumByForumId(@Param("id") int id) throws Exception;
 
+    //根据帖子id查询帖子具体内容
+    @Select("select * from forum where id=#{id}")
+    List<Forum> findForum(@Param("id") int id) throws Exception;
+
     //插入帖子（发表帖子）
     @Insert("insert into forum(forum_title,forum_content,game_id,username,date) values(#{forum_title},#{forum_content},#{game_id},#{username},#{date})")
     int submitForum(Forum forum) throws Exception;
