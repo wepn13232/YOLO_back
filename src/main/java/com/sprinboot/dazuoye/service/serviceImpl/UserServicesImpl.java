@@ -29,30 +29,19 @@ public class UserServicesImpl implements UserServices {
         return null;
     }
 
-//    查询是否已经存在用户，给予注册
-    @Override
-    public User checkUser(String username) throws Exception {
-        return userDao.selectAllUser(username);
-    }
 
 
-    //    用户注册
-    @Override
-    public int addUser(String username, String password) throws Exception {
-        User user = new User();
-        user.setCashLeft(0); //默认余额为0
-        user.setGame_name(""); //默认未购买任何游戏
-        user.setUsername(username);
-        user.setPassword(password);
-        return userDao.addUser(user);
-    }
+//    //    用户注册
+//    @Override
+//    public int addUser(String username, String password) throws Exception {
+//        User user = new User();
+//        user.setCashLeft(0); //默认余额为0
+//        user.setGame_name(""); //默认未购买任何游戏
+//        user.setUsername(username);
+//        user.setPassword(password);
+//        return userDao.addUser(user);
+//    }
 
-
-    //    账户充值
-    @Override
-    public int chargeMoney(int cashCharge, String username) throws Exception {
-        return userDao.charge(cashCharge, username);
-    }
 
 
 }
