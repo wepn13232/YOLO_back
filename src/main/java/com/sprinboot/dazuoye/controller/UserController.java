@@ -29,7 +29,7 @@ public class UserController {
         JSONObject json = new JSONObject();
 
         if (user != null) {
-            json.put("user", user);
+            json.put("data", user);
             json.put("desc", "登录成功");
             json.put("status", "200");
 
