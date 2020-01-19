@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -24,7 +26,11 @@ public class UserController {
     //    登录操作
     @RequestMapping("/dologin")
     @ResponseBody
-    public String dologin(@RequestParam String username, @RequestParam String password, Model model, HttpServletRequest request) throws Exception {
+    public String dologin(@RequestParam String username, @RequestParam String password, Model model, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
         User user = userServices.getUser(username, password);
         JSONObject json = new JSONObject();
 
@@ -35,7 +41,7 @@ public class UserController {
 
         } else {
             json.put("desc", "登录失败，账号密码错误");
-            json.put("status", "200");
+            json.put("status", "201");
         }
         return json.toJSONString();
     }
