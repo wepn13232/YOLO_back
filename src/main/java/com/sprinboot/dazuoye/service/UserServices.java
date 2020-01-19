@@ -10,7 +10,7 @@ public interface UserServices {
     User getUser(String username, String password) throws Exception;
 
 
-//    //    增加用户（用户注册）
-//    int addUser(String username, String password) throws Exception;
+    //    增加用户（用户注册）
+    int addUser(String username, String name, String password, String sex, String email, String address) throws Exception;
 
 }

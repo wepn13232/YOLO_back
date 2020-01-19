@@ -30,18 +30,19 @@ public class UserServicesImpl implements UserServices {
     }
 
 
-
-//    //    用户注册
-//    @Override
-//    public int addUser(String username, String password) throws Exception {
-//        User user = new User();
-//        user.setCashLeft(0); //默认余额为0
-//        user.setGame_name(""); //默认未购买任何游戏
-//        user.setUsername(username);
-//        user.setPassword(password);
-//        return userDao.addUser(user);
-//    }
-
+    //    用户注册
+    @Override
+    public int addUser(String username, String name, String password, String sex, String email, String address) throws Exception {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setAddress(address);
+        user.setEmail(email);
+        user.setSex(sex);
+        user.setName(name);
+        user.setLiveStatus("0"); //默认0，申请了直播编码才可以开
+        return userDao.addUser(user);
+    }
 
 
 }

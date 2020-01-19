@@ -26,7 +26,7 @@ public class UserController {
     //    登录操作
     @RequestMapping("/dologin")
     @ResponseBody
-    public String dologin(@RequestParam String username, @RequestParam String password, Model model, ServletResponse res) throws Exception {
+    public String dologin(@RequestParam String username, @RequestParam String password, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
@@ -46,18 +46,28 @@ public class UserController {
         return json.toJSONString();
     }
 
-//    //    注册用户
-//    @RequestMapping(value = "/doregister")
-//    @ResponseBody
-//    public String doregister(String userName, String password) throws Exception {
-//        JSONObject jsonObject = new JSONObject();
-//        if (userServices.addUser(userName, password) > 0) {
-//            jsonObject.put("useradd", "1");
-//        } else {
-//            jsonObject.put("useradd", "0");
-//        }
-//        return jsonObject.toJSONString();
-//    }
+    //    注册用户
+    @RequestMapping(value = "/doRegister")
+    @ResponseBody
+    public String doregister(@RequestParam String username, @RequestParam String name, @RequestParam String password,
+                             @RequestParam String sex, @RequestParam String email, @RequestParam String address,
+                             ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject jsonObject = new JSONObject();
+        if (userServices.addUser(username, name, password, sex, email, address) > 0) {
+            jsonObject.put("status", "200");
+            jsonObject.put("desc", "注册成功");
+            jsonObject.put("data", "");
+        } else {
+            jsonObject.put("status", "201");
+            jsonObject.put("desc", "注册失败,请填写必要参数");
+            jsonObject.put("data", "");
+        }
+        return jsonObject.toJSONString();
+    }
 
 
 }
