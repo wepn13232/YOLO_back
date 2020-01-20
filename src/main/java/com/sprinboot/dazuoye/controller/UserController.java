@@ -38,7 +38,6 @@ public class UserController {
             json.put("data", user);
             json.put("desc", "登录成功");
             json.put("status", "200");
-
         } else {
             json.put("desc", "登录失败，账号密码错误");
             json.put("status", "201");
@@ -69,5 +68,73 @@ public class UserController {
         return jsonObject.toJSONString();
     }
 
+
+    //    查询具体用户接口
+    @RequestMapping(value = "/getUserInfo")
+    @ResponseBody
+    public String getUserInfo(@RequestParam(value = "username", required = false) String username, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        List<User> user = userServices.selectSomeUser(username);
+        if (user != null) {
+            json.put("data", user);
+            json.put("desc", "查询成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "没有该用户");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
+
+    //    申请直播编码接口
+    @RequestMapping(value = "/insertAppId")
+    @ResponseBody
+    public String insertAppId(@RequestParam String appid, @RequestParam String username, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject jsonObject = new JSONObject();
+        if (userServices.addAppId(appid, username) > 0) {
+            jsonObject.put("status", "200");
+            jsonObject.put("desc", "申请编码成功");
+            jsonObject.put("data", "");
+        } else {
+            jsonObject.put("status", "201");
+            jsonObject.put("desc", "插入编码数据失败");
+            jsonObject.put("data", "");
+        }
+        return jsonObject.toJSONString();
+    }
+
+
+    //    编辑（更新）用户信息
+    @RequestMapping(value = "/editUserInfo")
+    @ResponseBody
+    public String editUserInfo(@RequestParam(value = "userSum", required = false) String userSum, @RequestParam(value = "address", required = false) String address,
+                               @RequestParam(value = "email", required = false) String email, @RequestParam(value = "appid", required = false) String appid,
+                               @RequestParam String username,ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject jsonObject = new JSONObject();
+        if (userServices.changeUserInfo(userSum, address, email, appid,username) > 0) {
+            jsonObject.put("status", "200");
+            jsonObject.put("desc", "修改用户信息成功");
+            jsonObject.put("data", "");
+        } else {
+            jsonObject.put("status", "201");
+            jsonObject.put("desc", "修改失败");
+            jsonObject.put("data", "");
+        }
+        return jsonObject.toJSONString();
+    }
 
 }

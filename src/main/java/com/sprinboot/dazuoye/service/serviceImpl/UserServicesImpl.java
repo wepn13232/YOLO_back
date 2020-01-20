@@ -7,6 +7,7 @@ import com.sprinboot.dazuoye.service.UserServices;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,6 +43,39 @@ public class UserServicesImpl implements UserServices {
         user.setName(name);
         user.setLiveStatus("0"); //默认0，申请了直播编码才可以开
         return userDao.addUser(user);
+    }
+
+
+    //    查询具体用户
+    @Override
+    public List<User> selectSomeUser(String username) throws Exception {
+        List<User> user = new ArrayList<>();
+        user = userDao.selectSomeUser(username);
+        if (user != null) {
+            return user;
+        }
+        return null;
+    }
+
+
+    //    申请直播编码
+    @Override
+    public int addAppId(String appid, String username) throws Exception {
+        User user = new User();
+        user.setAppid(appid);
+        return userDao.addAppId(appid, username);
+    }
+
+
+    //    编辑（更新）用户信息
+    @Override
+    public int changeUserInfo(String userSum, String address, String email, String appid,String username) throws Exception {
+        User user = new User();
+        user.setAppid(appid);
+        user.setUserSum(userSum);
+        user.setAddress(address);
+        user.setEmail(email);
+        return userDao.changeUserInfo(userSum, address, email, appid,username);
     }
 
 
