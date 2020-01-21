@@ -15,7 +15,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Base64;
 import java.util.List;
+
 
 @Controller
 public class UserController {
@@ -31,7 +33,10 @@ public class UserController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        User user = userServices.getUser(username, password);
+        final Base64.Decoder decoder = Base64.getDecoder();
+        //解码
+        System.out.println(new String(decoder.decode(password), "UTF-8"));
+        User user = userServices.getUser(username, new String(decoder.decode(password), "UTF-8"));
         JSONObject json = new JSONObject();
 
         if (user != null) {
