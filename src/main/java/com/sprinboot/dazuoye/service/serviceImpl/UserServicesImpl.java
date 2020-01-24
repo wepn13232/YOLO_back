@@ -58,6 +58,18 @@ public class UserServicesImpl implements UserServices {
     }
 
 
+    //    根据用户昵称查询用户
+    @Override
+    public User selectUserByName(String name) throws Exception {
+        User user = null;
+        user = userDao.selectUserByName(name);
+        if (user != null) {
+            return user;
+        }
+        return null;
+    }
+
+
     //    申请直播编码
     @Override
     public int addAppId(String appid, String username) throws Exception {
@@ -69,13 +81,13 @@ public class UserServicesImpl implements UserServices {
 
     //    编辑（更新）用户信息
     @Override
-    public int changeUserInfo(String userSum, String address, String email, String appid,String username) throws Exception {
+    public int changeUserInfo(String userSum, String address, String email, String appid, String username) throws Exception {
         User user = new User();
         user.setAppid(appid);
         user.setUserSum(userSum);
         user.setAddress(address);
         user.setEmail(email);
-        return userDao.changeUserInfo(userSum, address, email, appid,username);
+        return userDao.changeUserInfo(userSum, address, email, appid, username);
     }
 
 

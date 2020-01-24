@@ -97,6 +97,29 @@ public class UserController {
     }
 
 
+    //    根据昵称查询具体用户接口
+    @RequestMapping(value = "/getUserInfoByName")
+    @ResponseBody
+    public String getUserInfoByName(@RequestParam String name, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        User user = userServices.selectUserByName(name);
+        if (user != null) {
+            json.put("data", user);
+            json.put("desc", "查询成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "没有该用户");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
+
     //    申请直播编码接口
     @RequestMapping(value = "/insertAppId")
     @ResponseBody
@@ -124,13 +147,13 @@ public class UserController {
     @ResponseBody
     public String editUserInfo(@RequestParam(value = "userSum", required = false) String userSum, @RequestParam(value = "address", required = false) String address,
                                @RequestParam(value = "email", required = false) String email, @RequestParam(value = "appid", required = false) String appid,
-                               @RequestParam String username,ServletResponse res) throws Exception {
+                               @RequestParam String username, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject jsonObject = new JSONObject();
-        if (userServices.changeUserInfo(userSum, address, email, appid,username) > 0) {
+        if (userServices.changeUserInfo(userSum, address, email, appid, username) > 0) {
             jsonObject.put("status", "200");
             jsonObject.put("desc", "修改用户信息成功");
             jsonObject.put("data", "");

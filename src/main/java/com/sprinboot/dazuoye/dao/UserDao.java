@@ -28,6 +28,11 @@ public interface UserDao {
     List<User> selectSomeUser(@Param("username") String username) throws Exception;
 
 
+    //    搜索框根据用户昵称查询用户信息
+    @Select("select username,name,email,sex,address,liveStatus,userSum,appid from userinfo where name=#{name}")
+    User selectUserByName(@Param("name") String name) throws Exception;
+
+
     //    申请直播编码
     @Update("update  userinfo set appid=#{appid} where username=#{username}")
     int addAppId(@Param("appid") String appid, @Param("username") String username) throws Exception;
