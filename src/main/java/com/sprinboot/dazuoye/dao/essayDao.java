@@ -14,8 +14,8 @@ import java.util.List;
 public interface essayDao {
 
     //    插入文章
-    @Insert("insert into essayinfo(title,username,name,date,essayType,content,url) values(#{title}," +
-            "#{username},#{name},#{date},#{essayType},#{content},#{url})")
+    @Insert("insert into essayinfo(title,username,name,date,essayType,content,url,OTitle) values(#{title}," +
+            "#{username},#{name},#{date},#{essayType},#{content},#{url},#{OTitle})")
     int insertEssay(Essay essay) throws Exception;
 
     //    查看文章（可根据文章名字查看）-模糊查询

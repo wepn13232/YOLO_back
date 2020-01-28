@@ -9,12 +9,13 @@ public class Essay {
     private String date;
     private String essayType;
     private String content;
+    private String OTitle; //附言
 
     public Essay() {
         super();
     }
 
-    public Essay(Integer id, String title, String username, String name, String url, String date, String essayType, String content) {
+    public Essay(Integer id, String title, String username, String name, String url, String date, String essayType, String content, String OTitle) {
         this.id = id;
         this.title = title;
         this.username = username;
@@ -23,6 +24,15 @@ public class Essay {
         this.date = date;
         this.essayType = essayType;
         this.content = content;
+        this.OTitle = OTitle;
+    }
+
+    public String getOTitle() {
+        return OTitle;
+    }
+
+    public void setOTitle(String OTitle) {
+        this.OTitle = OTitle;
     }
 
     public Integer getId() {

@@ -27,7 +27,7 @@ public class essayServicesImpl implements essayServices {
     }
 
     @Override
-    public int insertEssay(String title, String username, String name, String date, String essayType, String content,String url) throws Exception {
+    public int insertEssay(String title, String username, String name, String date, String essayType, String content,String url,String OTitle) throws Exception {
         Essay essay = new Essay();
         essay.setTitle(title);
         essay.setUsername(username);
@@ -36,6 +36,7 @@ public class essayServicesImpl implements essayServices {
         essay.setEssayType(essayType);
         essay.setContent(content);
         essay.setUrl(url);
+        essay.setOTitle(OTitle);
         return essayDao.insertEssay(essay);
     }
 }

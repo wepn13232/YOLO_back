@@ -10,5 +10,5 @@ public interface essayServices {
     List<Essay> getEssay(String title) throws Exception;
 
     //    插入文章
-    int insertEssay(String title, String username, String name, String date, String essayType, String content,String url) throws Exception;
+    int insertEssay(String title, String username, String name, String date, String essayType, String content,String url,String OTitle) throws Exception;
 }

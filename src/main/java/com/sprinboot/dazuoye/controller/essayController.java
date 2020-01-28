@@ -46,13 +46,14 @@ public class essayController {
     @RequestMapping(value = "/insertEssay")
     @ResponseBody
     public String insertEssay(@RequestParam String title, @RequestParam String username, @RequestParam String name,
-                              @RequestParam String date, @RequestParam String essayType, @RequestParam String content, @RequestParam String url, ServletResponse res) throws Exception {
+                              @RequestParam String date, @RequestParam String essayType, @RequestParam String content, @RequestParam String url,
+                              @RequestParam String OTitle , ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        if (essayServices.insertEssay(title, username, name, date, essayType, content,url) > 0) {
+        if (essayServices.insertEssay(title, username, name, date, essayType, content,url,OTitle) > 0) {
             json.put("data", "");
             json.put("desc", "文章添加成功！");
             json.put("status", "200");
