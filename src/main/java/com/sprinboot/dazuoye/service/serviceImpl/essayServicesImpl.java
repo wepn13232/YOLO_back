@@ -15,11 +15,11 @@ public class essayServicesImpl implements essayServices {
     private essayDao essayDao;
 
 
-    //    模糊查询用户
+    //    模糊查询文章
     @Override
-    public List<Essay> getEssay(String title) throws Exception {
+    public List<Essay> getEssay(String title, Integer id) throws Exception {
         List<Essay> essays = new ArrayList<>();
-        essays = essayDao.getEssay(title);
+        essays = essayDao.getEssay(title, id);
         if (essays != null) {
             return essays;
         }
@@ -27,7 +27,7 @@ public class essayServicesImpl implements essayServices {
     }
 
     @Override
-    public int insertEssay(String title, String username, String name, String date, String essayType, String content,String url,String OTitle) throws Exception {
+    public int insertEssay(String title, String username, String name, String date, String essayType, String content, String url, String OTitle) throws Exception {
         Essay essay = new Essay();
         essay.setTitle(title);
         essay.setUsername(username);

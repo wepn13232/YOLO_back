@@ -22,13 +22,13 @@ public class essayController {
     //    查询文章（模糊查询）
     @RequestMapping(value = "/getEssay")
     @ResponseBody
-    public String getEssay(@RequestParam(value = "title", required = false) String title, ServletResponse res) throws Exception {
+    public String getEssay(@RequestParam(value = "title", required = false) String title, @RequestParam(value = "id", required = false) Integer id, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        List<Essay> user = essayServices.getEssay(title);
+        List<Essay> user = essayServices.getEssay(title, id);
         if (user != null) {
             json.put("data", user);
             json.put("desc", "查询成功");
@@ -47,13 +47,13 @@ public class essayController {
     @ResponseBody
     public String insertEssay(@RequestParam String title, @RequestParam String username, @RequestParam String name,
                               @RequestParam String date, @RequestParam String essayType, @RequestParam String content, @RequestParam String url,
-                              @RequestParam String OTitle , ServletResponse res) throws Exception {
+                              @RequestParam String OTitle, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        if (essayServices.insertEssay(title, username, name, date, essayType, content,url,OTitle) > 0) {
+        if (essayServices.insertEssay(title, username, name, date, essayType, content, url, OTitle) > 0) {
             json.put("data", "");
             json.put("desc", "文章添加成功！");
             json.put("status", "200");
