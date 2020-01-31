@@ -6,6 +6,7 @@ import com.sprinboot.dazuoye.service.hostServices;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class hostServicesImpl implements hostServices {
@@ -24,14 +25,14 @@ public class hostServicesImpl implements hostServices {
         return hostDao.insertHost(host);
     }
 
-
-    //    获取主播信息
     @Override
-    public Host getHostInfo(String username) throws Exception {
-        Host host = hostDao.getHostInfo(username);
+    public List<Host> getHostInfo(String username) throws Exception {
+        List<Host> host = hostDao.getHostInfo(username);
         if (host != null) {
             return host;
         }
         return null;
     }
+
+
 }

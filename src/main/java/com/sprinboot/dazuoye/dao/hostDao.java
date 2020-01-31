@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("hostDao")
 @Mapper
 public interface hostDao {
@@ -16,6 +18,8 @@ public interface hostDao {
     int insertHost(Host host) throws Exception;
 
     //    获取主播信息
-    @Select("select * from host where username=#{username}")
-    Host getHostInfo(@Param("username") String username) throws Exception;
+    @Select("<script>" +
+            "select * from host<if test='username!=null'>where username=#{username}</if> " +
+            " </script>")
+    List<Host> getHostInfo(@Param("username") String username) throws Exception;
 }

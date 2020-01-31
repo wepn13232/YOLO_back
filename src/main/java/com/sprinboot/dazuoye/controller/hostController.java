@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class hostController {
@@ -43,13 +45,13 @@ public class hostController {
     //    获取主播信息
     @RequestMapping(value = "/getHostInfo")
     @ResponseBody
-    public String getHostInfo(@RequestParam String username, ServletResponse res) throws Exception {
+    public String getHostInfo(@RequestParam(value = "username", required = false) String username, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        Host host = new Host();
+       List<Host> host = new ArrayList<>();
         host = hostServices.getHostInfo(username);
 
         json.put("data", host);
