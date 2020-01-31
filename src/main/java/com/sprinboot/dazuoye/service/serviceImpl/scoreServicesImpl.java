@@ -16,7 +16,7 @@ public class scoreServicesImpl implements scoreServices {
 
     //    用户等级打分
     @Override
-    public int insertScore(String username, String score,String setedUser,Integer essayID) throws Exception {
+    public int insertScore(String username, String score, String setedUser, Integer essayID) throws Exception {
         Score score1 = new Score();
         score1.setUsername(username);
         score1.setScore(score);
@@ -32,6 +32,18 @@ public class scoreServicesImpl implements scoreServices {
         List<Score> scores = scoreDao.getSore(username);
         if (scores != null) {
             return scores;
+        }
+        return null;
+    }
+
+
+    //    获取用户是否打分
+    @Override
+    public Score setScoreOrNot(String setedUser, Integer essayID) throws Exception {
+        Score score = new Score();
+        score = scoreDao.setScoreOrNot(setedUser, essayID);
+        if (score != null) {
+            return score;
         }
         return null;
     }

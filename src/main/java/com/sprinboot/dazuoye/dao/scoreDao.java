@@ -21,4 +21,8 @@ public interface scoreDao {
     //    获取用户评分接口
     @Select("select score from score where username=#{username}")
     List<Score> getSore(@Param("username") String username) throws Exception;
+
+    //    查看该用户是否已评分
+    @Select("select * from score where setedUser = #{setedUser} and essayID = #{essayID}")
+    Score setScoreOrNot(@Param("setedUser") String setedUser, @Param("essayID") Integer essayID) throws Exception;
 }

@@ -22,13 +22,13 @@ public class scoreController {
     //    用户等级打分
     @RequestMapping(value = "/setScore")
     @ResponseBody
-    public String setScore(@RequestParam String username, @RequestParam  String score,@RequestParam String setedUser,@RequestParam Integer essayID ,ServletResponse res) throws Exception {
+    public String setScore(@RequestParam String username, @RequestParam String score, @RequestParam String setedUser, @RequestParam Integer essayID, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        if (scoreServices.insertScore(username, score,setedUser,essayID) > 0) {
+        if (scoreServices.insertScore(username, score, setedUser, essayID) > 0) {
             json.put("data", "");
             json.put("desc", "用户等级打分成功！");
             json.put("status", "200");
@@ -59,6 +59,30 @@ public class scoreController {
         } else {
             json.put("data", "");
             json.put("desc", "用户无评分！");
+            json.put("status", "201");
+        }
+        return json.toJSONString();
+    }
+
+
+    //    获取用户是否评分
+    @RequestMapping(value = "/setScoreOrNot")
+    @ResponseBody
+    public String setScoreOrNot(@RequestParam String setedUser, @RequestParam Integer essayID, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        Score score = new Score();
+        score = scoreServices.setScoreOrNot(setedUser, essayID);
+        if (score != null) {
+            json.put("data", score);
+            json.put("desc", "用户已打分！");
+            json.put("status", "200");
+        } else {
+            json.put("data", "");
+            json.put("desc", "用户暂无打分");
             json.put("status", "201");
         }
         return json.toJSONString();
