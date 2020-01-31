@@ -34,7 +34,7 @@ public interface UserDao {
 
 
     //    申请直播编码
-    @Update("update  userinfo set appid=#{appid} where username=#{username}")
+    @Update("update  userinfo set appid=#{appid} , liveStatus='1' where username=#{username}")
     int addAppId(@Param("appid") String appid, @Param("username") String username) throws Exception;
 
 

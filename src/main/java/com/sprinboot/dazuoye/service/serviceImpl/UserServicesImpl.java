@@ -75,6 +75,7 @@ public class UserServicesImpl implements UserServices {
     public int addAppId(String appid, String username) throws Exception {
         User user = new User();
         user.setAppid(appid);
+        user.setLiveStatus("1");
         return userDao.addAppId(appid, username);
     }
 
