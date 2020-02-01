@@ -19,7 +19,7 @@ public class hostController {
     @Resource
     private hostServices hostServices;
 
-    //    开播主播信息添加
+    //    申请appid时插入开播主播信息
     @RequestMapping(value = "/insertHost")
     @ResponseBody
     public String insertHost(@RequestParam String username, @RequestParam String name, @RequestParam String appid,
@@ -31,11 +31,11 @@ public class hostController {
         JSONObject json = new JSONObject();
         if (hostServices.insertHost(username, name, appid, title, roomSum) > 0) {
             json.put("data", "");
-            json.put("desc", "用户开播成功！");
+            json.put("desc", "用户开通直播间！");
             json.put("status", "200");
         } else {
             json.put("data", "");
-            json.put("desc", "用户开播失败！");
+            json.put("desc", "用户开通直播间失败！");
             json.put("status", "201");
         }
         return json.toJSONString();
@@ -58,6 +58,28 @@ public class hostController {
         json.put("desc", "获取用户信息成功！");
         json.put("status", "200");
 
+        return json.toJSONString();
+    }
+
+
+    //    开播更新主播信息表
+    @RequestMapping(value = "/updateHostInfo")
+    @ResponseBody
+    public String updateHostInfo(@RequestParam String title, @RequestParam String roomSum , @RequestParam String username ,ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        if (hostServices.updateHostInfo(title,roomSum,username) > 0) {
+            json.put("data", "");
+            json.put("desc", "用户开播成功！");
+            json.put("status", "200");
+        } else {
+            json.put("data", "");
+            json.put("desc", "用户开播失败！");
+            json.put("status", "201");
+        }
         return json.toJSONString();
     }
 

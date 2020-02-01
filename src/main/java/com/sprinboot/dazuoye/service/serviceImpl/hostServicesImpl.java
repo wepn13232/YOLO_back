@@ -13,7 +13,7 @@ public class hostServicesImpl implements hostServices {
     @Resource
     private hostDao hostDao;
 
-    //    开播添加主播信息
+    //    申请appid时插入开播主播信息
     @Override
     public int insertHost(String username, String name, String appid, String title, String roomSum) throws Exception {
         Host host = new Host();
@@ -25,6 +25,8 @@ public class hostServicesImpl implements hostServices {
         return hostDao.insertHost(host);
     }
 
+
+    //    获取主播信息列表
     @Override
     public List<Host> getHostInfo(String username) throws Exception {
         List<Host> host = hostDao.getHostInfo(username);
@@ -32,6 +34,16 @@ public class hostServicesImpl implements hostServices {
             return host;
         }
         return null;
+    }
+
+
+    //    开播更新主播信息表
+    @Override
+    public int updateHostInfo(String title, String roomSum, String username) throws Exception {
+        Host host = new Host();
+        host.setTitle(title);
+        host.setRoomSum(roomSum);
+        return hostDao.updateHostInfo(title, roomSum, username);
     }
 
 
