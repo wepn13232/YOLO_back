@@ -84,7 +84,7 @@ public class hostController {
     }
 
 
-    //    获取主播信息
+    //    获取开播状态
     @RequestMapping(value = "/getIsLive")
     @ResponseBody
     public String getIsLive(@RequestParam String username, ServletResponse res) throws Exception {

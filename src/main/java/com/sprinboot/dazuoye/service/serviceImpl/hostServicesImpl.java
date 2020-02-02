@@ -22,7 +22,7 @@ public class hostServicesImpl implements hostServices {
         host.setUsername(username);
         host.setTitle(title);
         host.setRoomSum(roomSum);
-        host.setLive(false);
+        host.setIsLive(0);
         return hostDao.insertHost(host);
     }
 
