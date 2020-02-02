@@ -165,4 +165,27 @@ public class UserController {
         return jsonObject.toJSONString();
     }
 
+
+    //    查询appid
+    @RequestMapping(value = "/getAppid")
+    @ResponseBody
+    public String getAppid(@RequestParam String username, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+       User user = userServices.selectAppid(username);
+        if (user != null) {
+            json.put("data", user);
+            json.put("desc", "查询成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "用户无appid数据");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
 }

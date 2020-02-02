@@ -51,7 +51,7 @@ public class hostController {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-       List<Host> host = new ArrayList<>();
+        List<Host> host = new ArrayList<>();
         host = hostServices.getHostInfo(username);
 
         json.put("data", host);
@@ -65,19 +65,43 @@ public class hostController {
     //    开播更新主播信息表
     @RequestMapping(value = "/updateHostInfo")
     @ResponseBody
-    public String updateHostInfo(@RequestParam String title, @RequestParam String roomSum , @RequestParam String username ,ServletResponse res) throws Exception {
+    public String updateHostInfo(@RequestParam String title, @RequestParam String roomSum, @RequestParam String username, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        if (hostServices.updateHostInfo(title,roomSum,username) > 0) {
+        if (hostServices.updateHostInfo(title, roomSum, username) > 0) {
             json.put("data", "");
             json.put("desc", "用户开播成功！");
             json.put("status", "200");
         } else {
             json.put("data", "");
             json.put("desc", "用户开播失败！");
+            json.put("status", "201");
+        }
+        return json.toJSONString();
+    }
+
+
+    //    获取主播信息
+    @RequestMapping(value = "/getIsLive")
+    @ResponseBody
+    public String getIsLive(@RequestParam String username, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        Host host = new Host();
+        host = hostServices.getIsLive(username);
+        if (host != null) {
+            json.put("data", host);
+            json.put("desc", "获取直播开播信息成功！");
+            json.put("status", "200");
+        }else{
+            json.put("data", "");
+            json.put("desc", "直播开播信息为空null！");
             json.put("status", "201");
         }
         return json.toJSONString();

@@ -92,4 +92,16 @@ public class UserServicesImpl implements UserServices {
     }
 
 
+    //    查询appid
+    @Override
+    public User selectAppid(String username) throws Exception {
+        User user = new User();
+        user = userDao.selectAppid(username);
+        if (user != null) {
+            return user;
+        }
+        return null;
+    }
+
+
 }

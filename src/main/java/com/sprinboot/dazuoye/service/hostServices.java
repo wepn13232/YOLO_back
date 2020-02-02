@@ -16,4 +16,7 @@ public interface hostServices {
     //    开播更新主播信息表
     int updateHostInfo(String title, String roomSum, String username) throws Exception;
 
+    //    获取是否开播状态
+    Host getIsLive(String username) throws Exception;
+
 }

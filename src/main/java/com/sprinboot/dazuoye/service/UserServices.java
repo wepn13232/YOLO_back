@@ -25,4 +25,6 @@ public interface UserServices {
     //    编辑（更新用户信息）
     int changeUserInfo(String userSum, String address, String email, String appid, String username) throws Exception;
 
+    //    查询appid
+    User selectAppid(String username) throws Exception;
 }

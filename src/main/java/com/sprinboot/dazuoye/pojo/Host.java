@@ -7,6 +7,7 @@ public class Host {
     private String appid;
     private String title;
     private String roomSum;
+    private Boolean isLive;
 
     public Host() {
         super();
@@ -60,12 +61,21 @@ public class Host {
         this.roomSum = roomSum;
     }
 
-    public Host(Integer id, String username, String name, String appid, String title, String roomSum) {
+    public Boolean getLive() {
+        return isLive;
+    }
+
+    public void setLive(Boolean live) {
+        isLive = live;
+    }
+
+    public Host(Integer id, String username, String name, String appid, String title, String roomSum, Boolean isLive) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.appid = appid;
         this.title = title;
         this.roomSum = roomSum;
+        this.isLive = isLive;
     }
 }

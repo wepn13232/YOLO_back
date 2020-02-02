@@ -22,6 +22,7 @@ public class hostServicesImpl implements hostServices {
         host.setUsername(username);
         host.setTitle(title);
         host.setRoomSum(roomSum);
+        host.setLive(false);
         return hostDao.insertHost(host);
     }
 
@@ -44,6 +45,18 @@ public class hostServicesImpl implements hostServices {
         host.setTitle(title);
         host.setRoomSum(roomSum);
         return hostDao.updateHostInfo(title, roomSum, username);
+    }
+
+
+    //    获取是否开播状态
+    @Override
+    public Host getIsLive(String username) throws Exception {
+        Host host = new Host();
+        host = hostDao.getIsLive(username);
+        if (host != null) {
+            return host;
+        }
+        return null;
     }
 
 

@@ -22,7 +22,7 @@ public interface UserDao {
 
 
     //    查询用户信息（展示用，除重要信息）(不传username查全部)
-    @Select("<script>select username,name,email,sex,address,liveStatus,userSum,appid from userinfo" +
+    @Select("<script>select username,name,email,sex,address,liveStatus,userSum from userinfo" +
             "<if test='username!=null'> where username=#{username}</if>" +
             "</script> ")
     List<User> selectSomeUser(@Param("username") String username) throws Exception;
@@ -42,6 +42,10 @@ public interface UserDao {
     @Update("update userinfo set userSum=#{userSum},address=#{address},email=#{email},appid=#{appid} where username=#{username}")
     int changeUserInfo(@Param("userSum") String userSum, @Param("address") String address, @Param("email") String email, @Param("appid") String appid,
                        @Param("username") String username) throws Exception;
+
+    //    查询appid
+    @Select("select appid from userinfo where username = #{username}")
+    User selectAppid(@Param("username") String username) throws Exception;
 
 
 }
