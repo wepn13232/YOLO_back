@@ -16,13 +16,19 @@ public interface hostDao {
 
     //    获取主播信息
     @Select("<script>" +
-            "select * from host<if test='username!=null'>where username=#{username}</if> " +
+            "select id,username,name,title,roomSum,isLive from host<if test='username!=null'>where username=#{username}</if> " +
             " </script>")
     List<Host> getHostInfo(@Param("username") String username) throws Exception;
 
+    //    admin获取所有主播信息
+    @Select("<script>" +
+            "select * from host<if test='username!=null'>where username=#{username}</if> " +
+            " </script>")
+    List<Host> adminGetHostInfo(@Param("username") String username) throws Exception;
+
     //    开播更新主播信息表内容
-    @Update("update host set title=#{title} , roomSum=#{roomSum} where username=#{username}")
-    int updateHostInfo(@Param("title") String title, @Param("roomSum") String roomSum, @Param("username") String username) throws Exception;
+    @Update("<script>update host set <if test='title!=null'> title=#{title} ,</if><if test='roomSum!=null'> roomSum=#{roomSum},</if>isLive=#{isLive} where username=#{username} </script>")
+    int updateHostInfo(@Param("title") String title, @Param("roomSum") String roomSum, @Param("isLive") Integer isLive, @Param("username") String username) throws Exception;
 
     //    获取是否开播状态
     @Select("select isLive from host where username=#{username}")

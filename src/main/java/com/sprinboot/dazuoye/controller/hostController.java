@@ -61,17 +61,36 @@ public class hostController {
         return json.toJSONString();
     }
 
-
-    //    开播更新主播信息表
-    @RequestMapping(value = "/updateHostInfo")
+    //    admin获取主播信息
+    @RequestMapping(value = "/adminGetHostInfo")
     @ResponseBody
-    public String updateHostInfo(@RequestParam String title, @RequestParam String roomSum, @RequestParam String username, ServletResponse res) throws Exception {
+    public String adminGetHostInfo(@RequestParam(value = "username", required = false) String username, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        if (hostServices.updateHostInfo(title, roomSum, username) > 0) {
+        List<Host> host = new ArrayList<>();
+        host = hostServices.adminGetHostInfo(username);
+
+        json.put("data", host);
+        json.put("desc", "获取用户信息成功！");
+        json.put("status", "200");
+
+        return json.toJSONString();
+    }
+
+
+    //    开播更新主播信息表
+    @RequestMapping(value = "/updateHostInfo")
+    @ResponseBody
+    public String updateHostInfo(@RequestParam(value = "title", required = false) String title, @RequestParam(value = "roomSum", required = false) String roomSum, @RequestParam Integer isLive, @RequestParam String username, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        if (hostServices.updateHostInfo(title, roomSum, isLive, username) > 0) {
             json.put("data", "");
             json.put("desc", "用户开播成功！");
             json.put("status", "200");
@@ -99,7 +118,7 @@ public class hostController {
             json.put("data", host);
             json.put("desc", "获取直播开播信息成功！");
             json.put("status", "200");
-        }else{
+        } else {
             json.put("data", "");
             json.put("desc", "直播开播信息为空null！");
             json.put("status", "201");

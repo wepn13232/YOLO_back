@@ -37,14 +37,24 @@ public class hostServicesImpl implements hostServices {
         return null;
     }
 
+    //    admin获取主播信息
+    @Override
+    public List<Host> adminGetHostInfo(String username) throws Exception {
+        List<Host> host = hostDao.adminGetHostInfo(username);
+        if (host != null) {
+            return host;
+        }
+        return null;
+    }
+
 
     //    开播更新主播信息表
     @Override
-    public int updateHostInfo(String title, String roomSum, String username) throws Exception {
+    public int updateHostInfo(String title, String roomSum, Integer isLive, String username) throws Exception {
         Host host = new Host();
         host.setTitle(title);
         host.setRoomSum(roomSum);
-        return hostDao.updateHostInfo(title, roomSum, username);
+        return hostDao.updateHostInfo(title, roomSum, isLive, username);
     }
 
 

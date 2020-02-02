@@ -13,8 +13,11 @@ public interface hostServices {
     //    获取主播信息
     List<Host> getHostInfo(String username) throws Exception;
 
+    //    admin获取主播信息
+    List<Host> adminGetHostInfo(String username) throws Exception;
+
     //    开播更新主播信息表
-    int updateHostInfo(String title, String roomSum, String username) throws Exception;
+    int updateHostInfo(String title, String roomSum, Integer isLive ,String username) throws Exception;
 
     //    获取是否开播状态
     Host getIsLive(String username) throws Exception;
