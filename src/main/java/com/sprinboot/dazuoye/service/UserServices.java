@@ -27,4 +27,7 @@ public interface UserServices {
 
     //    查询appid
     User selectAppid(String username) throws Exception;
+
+    //    admin获取主播信息
+    List<User> adminGetHost() throws Exception;
 }

@@ -103,5 +103,16 @@ public class UserServicesImpl implements UserServices {
         return null;
     }
 
+    //    admin获取主播信息
+    @Override
+    public List<User> adminGetHost() throws Exception {
+        List<User> users = new ArrayList<>();
+        users = userDao.adminGetHost();
+        if (users != null) {
+            return users;
+        }
+        return null;
+    }
+
 
 }

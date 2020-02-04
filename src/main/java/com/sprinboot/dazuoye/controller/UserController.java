@@ -175,7 +175,7 @@ public class UserController {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-       User user = userServices.selectAppid(username);
+        User user = userServices.selectAppid(username);
         if (user != null) {
             json.put("data", user);
             json.put("desc", "查询成功");
@@ -183,6 +183,29 @@ public class UserController {
         } else {
             json.put("status", "201");
             json.put("desc", "用户无appid数据");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
+
+    //    admin获取主播信息
+    @RequestMapping(value = "/adminGetHost")
+    @ResponseBody
+    public String adminGetHost(ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        List<User> users = userServices.adminGetHost();
+        if (users != null) {
+            json.put("data", users);
+            json.put("desc", "查询成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "暂无数据");
             json.put("data", "");
         }
         return json.toJSONString();

@@ -20,4 +20,15 @@ public class subServicesImpl implements subServices {
         sub.setPicId(picId);
         return subDao.insertSub(sub);
     }
+
+    //    获取用户是否点赞
+    @Override
+    public Sub subOrNot(String subUser, Integer picId) throws Exception {
+        Sub sub = new Sub();
+        sub = subDao.getSubOrNot(subUser, picId);
+        if (sub != null) {
+            return sub;
+        }
+        return null;
+    }
 }

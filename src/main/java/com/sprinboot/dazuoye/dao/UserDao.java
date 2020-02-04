@@ -47,5 +47,9 @@ public interface UserDao {
     @Select("select appid from userinfo where username = #{username}")
     User selectAppid(@Param("username") String username) throws Exception;
 
+    //    获取appid不为空的字段（即获取主播）
+    @Select("select * from userinfo where appid != ''")
+    List<User> adminGetHost() throws Exception;
+
 
 }
