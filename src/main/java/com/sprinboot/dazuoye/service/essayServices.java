@@ -11,4 +11,7 @@ public interface essayServices {
 
     //    插入文章
     int insertEssay(String title, String username, String name, String date, String essayType, String content, String url, String OTitle) throws Exception;
+
+    //    删除文章
+    int deleteEssay(Integer id) throws Exception;
 }

@@ -39,4 +39,11 @@ public class essayServicesImpl implements essayServices {
         essay.setOTitle(OTitle);
         return essayDao.insertEssay(essay);
     }
+
+    //    删除文章
+    @Override
+    public int deleteEssay(Integer id) throws Exception {
+        return essayDao.deleteEssay(id);
+    }
+
 }

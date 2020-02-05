@@ -64,4 +64,26 @@ public class essayController {
         }
         return json.toJSONString();
     }
+
+
+    //    删除文章
+    @RequestMapping(value = "/deleteEssay")
+    @ResponseBody
+    public String deleteEssay(@RequestParam Integer id, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        if (essayServices.deleteEssay(id) > 0) {
+            json.put("data", "");
+            json.put("desc", "文章删除成功！");
+            json.put("status", "200");
+        } else {
+            json.put("data", "");
+            json.put("desc", "文章删除失败！");
+            json.put("status", "201");
+        }
+        return json.toJSONString();
+    }
 }

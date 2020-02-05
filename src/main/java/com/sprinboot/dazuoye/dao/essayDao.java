@@ -1,10 +1,7 @@
 package com.sprinboot.dazuoye.dao;
 
 import com.sprinboot.dazuoye.pojo.Essay;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +19,8 @@ public interface essayDao {
     @Select("<script>select * from essayinfo <if test='title !=null'>where title like '%${title}%'</if> " +
             "<if test='id!=null'>where id =#{id}</if> </script>")
     List<Essay> getEssay(@Param("title") String title, @Param("id") Integer id) throws Exception;
+
+    //    删除文章
+    @Delete("delete from essayinfo where id = #{id}")
+    int deleteEssay(@Param("id") Integer id) throws Exception;
 }
