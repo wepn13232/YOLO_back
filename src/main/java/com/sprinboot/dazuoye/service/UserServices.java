@@ -30,4 +30,7 @@ public interface UserServices {
 
     //    admin获取主播信息
     List<User> adminGetHost() throws Exception;
+
+    //    封禁直播
+    int banLive(String liveStatus, String username) throws Exception;
 }

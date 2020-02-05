@@ -211,4 +211,27 @@ public class UserController {
         return json.toJSONString();
     }
 
+
+    //    封禁直播
+    @RequestMapping(value = "/banLive")
+    @ResponseBody
+    public String banLive(@RequestParam String liveStatus, @RequestParam String username, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+
+        if (userServices.banLive(liveStatus, username) > 0) {
+            json.put("data", "");
+            json.put("desc", "修改直播状态成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "修改直播状态失败");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
 }

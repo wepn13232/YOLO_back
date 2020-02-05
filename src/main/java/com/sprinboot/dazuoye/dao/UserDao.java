@@ -51,5 +51,9 @@ public interface UserDao {
     @Select("select * from userinfo where appid != ''")
     List<User> adminGetHost() throws Exception;
 
+    //    封禁直播\回复直播
+    @Update("update userinfo set liveStatus = #{liveStatus} where username = #{username}")
+    int banLive(@Param("liveStatus") String liveStatus, @Param("username") String username) throws Exception;
+
 
 }

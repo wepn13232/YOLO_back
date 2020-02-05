@@ -114,5 +114,13 @@ public class UserServicesImpl implements UserServices {
         return null;
     }
 
+    //    封禁直播
+    @Override
+    public int banLive(String liveStatus, String username) throws Exception {
+        User user = new User();
+        user.setLiveStatus(liveStatus);
+        return userDao.banLive(liveStatus, username);
+    }
+
 
 }

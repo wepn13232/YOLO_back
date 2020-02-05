@@ -34,4 +34,5 @@ public interface hostDao {
     @Select("select isLive from host where username=#{username}")
     Host getIsLive(@Param("username") String username) throws Exception;
 
+
 }
