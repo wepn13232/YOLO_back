@@ -14,4 +14,7 @@ public interface essayServices {
 
     //    删除文章
     int deleteEssay(Integer id) throws Exception;
+
+    //    获取文章类型
+    Essay getEssayType() throws Exception;
 }

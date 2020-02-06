@@ -26,6 +26,7 @@ public class essayServicesImpl implements essayServices {
         return null;
     }
 
+    //    创建文章
     @Override
     public int insertEssay(String title, String username, String name, String date, String essayType, String content, String url, String OTitle) throws Exception {
         Essay essay = new Essay();
@@ -44,6 +45,17 @@ public class essayServicesImpl implements essayServices {
     @Override
     public int deleteEssay(Integer id) throws Exception {
         return essayDao.deleteEssay(id);
+    }
+
+    //    获取文章类型
+    @Override
+    public Essay getEssayType() throws Exception {
+        Essay essay = new Essay();
+        essay = essayDao.getEssayType();
+        if (essay != null) {
+            return essay;
+        }
+        return null;
     }
 
 }

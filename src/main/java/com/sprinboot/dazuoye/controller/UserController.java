@@ -234,4 +234,27 @@ public class UserController {
         return json.toJSONString();
     }
 
+
+    //    获取男女人数
+    @RequestMapping(value = "/getNumOfSex")
+    @ResponseBody
+    public String getNumOfSex(ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        User user = userServices.getNumOfUserSex();
+        if (user != null) {
+            json.put("data", user);
+            json.put("desc", "获取男女人数比例成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "无数据");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
 }

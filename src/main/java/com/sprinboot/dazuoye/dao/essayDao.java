@@ -23,4 +23,9 @@ public interface essayDao {
     //    删除文章
     @Delete("delete from essayinfo where id = #{id}")
     int deleteEssay(@Param("id") Integer id) throws Exception;
+
+    //    获取文章类型
+    @Select("select sum(essayType ='1') as typeTravel,sum(essayType='2') as typeStrategy," +
+            "sum(essayType='3') as typeLocation,sum(essayType='4') as typePhotoG from essayInfo")
+    Essay getEssayType() throws Exception;
 }

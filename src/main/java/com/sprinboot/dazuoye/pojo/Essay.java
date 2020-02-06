@@ -11,6 +11,50 @@ public class Essay {
     private String content;
     private String OTitle; //附言
 
+    private String typeTravel;
+    private String typeStrategy;
+    private String typeLocation;
+    private String typePhotoG;
+
+    public String getTypeTravel() {
+        return typeTravel;
+    }
+
+    public void setTypeTravel(String typeTravel) {
+        this.typeTravel = typeTravel;
+    }
+
+    public String getTypeStrategy() {
+        return typeStrategy;
+    }
+
+    public void setTypeStrategy(String typeStrategy) {
+        this.typeStrategy = typeStrategy;
+    }
+
+    public String getTypeLocation() {
+        return typeLocation;
+    }
+
+    public void setTypeLocation(String typeLocation) {
+        this.typeLocation = typeLocation;
+    }
+
+    public String getTypePhotoG() {
+        return typePhotoG;
+    }
+
+    public void setTypePhotoG(String typePhotoG) {
+        this.typePhotoG = typePhotoG;
+    }
+
+    public Essay(String typeTravel, String typeStrategy, String typeLocation, String typePhotoG) {
+        this.typeTravel = typeTravel;
+        this.typeStrategy = typeStrategy;
+        this.typeLocation = typeLocation;
+        this.typePhotoG = typePhotoG;
+    }
+
     public Essay() {
         super();
     }

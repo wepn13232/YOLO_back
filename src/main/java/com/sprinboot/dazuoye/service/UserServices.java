@@ -33,4 +33,7 @@ public interface UserServices {
 
     //    封禁直播
     int banLive(String liveStatus, String username) throws Exception;
+
+    //    查询男女人数（admin）展示
+    User getNumOfUserSex() throws Exception;
 }

@@ -86,4 +86,26 @@ public class essayController {
         }
         return json.toJSONString();
     }
+
+    //    获取文章类型
+    @RequestMapping(value = "/getEssayType")
+    @ResponseBody
+    public String getEssayType(ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        Essay essay = essayServices.getEssayType();
+        if (essay != null) {
+            json.put("data", essay);
+            json.put("desc", "获取文章类型成功！");
+            json.put("status", "200");
+        } else {
+            json.put("data", "");
+            json.put("desc", "无数据！");
+            json.put("status", "201");
+        }
+        return json.toJSONString();
+    }
 }

@@ -55,5 +55,7 @@ public interface UserDao {
     @Update("update userinfo set liveStatus = #{liveStatus} where username = #{username}")
     int banLive(@Param("liveStatus") String liveStatus, @Param("username") String username) throws Exception;
 
-
+    //    查询男女人数（admin）展示
+    @Select("select sum(sex='1') as male,sum(sex='2') as female from userinfo")
+    User getNumOfUserSex() throws Exception;
 }

@@ -122,5 +122,16 @@ public class UserServicesImpl implements UserServices {
         return userDao.banLive(liveStatus, username);
     }
 
+    //    查询男女人数
+    @Override
+    public User getNumOfUserSex() throws Exception {
+        User user = new User();
+        user = userDao.getNumOfUserSex();
+        if (user != null) {
+            return user;
+        }
+        return null;
+    }
+
 
 }
