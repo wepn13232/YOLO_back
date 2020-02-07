@@ -2,6 +2,7 @@ package com.sprinboot.dazuoye.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sprinboot.dazuoye.pojo.User;
+import com.sprinboot.dazuoye.pojo.addressInfo;
 import com.sprinboot.dazuoye.service.UserServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -257,4 +258,27 @@ public class UserController {
         return json.toJSONString();
     }
 
+    //    获取男女人数
+    @RequestMapping(value = "/getAddressNum")
+    @ResponseBody
+    public String getAddressNum(ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        List<addressInfo> user = userServices.getAddressNum();
+        if (user != null) {
+            json.put("data", user);
+            json.put("desc", "获取地址比例成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "无数据");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
 }
+

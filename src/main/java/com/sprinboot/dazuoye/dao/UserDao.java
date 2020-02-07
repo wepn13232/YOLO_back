@@ -2,6 +2,7 @@ package com.sprinboot.dazuoye.dao;
 
 
 import com.sprinboot.dazuoye.pojo.User;
+import com.sprinboot.dazuoye.pojo.addressInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -58,4 +59,8 @@ public interface UserDao {
     //    查询男女人数（admin）展示
     @Select("select sum(sex='1') as male,sum(sex='2') as female from userinfo")
     User getNumOfUserSex() throws Exception;
+
+    //    获取不同地区的人数比例
+    @Select("select address, count(*) as sum from userinfo group by address")
+    List<addressInfo> getAdressNum() throws Exception;
 }

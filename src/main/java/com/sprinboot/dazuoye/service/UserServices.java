@@ -1,6 +1,7 @@
 package com.sprinboot.dazuoye.service;
 
 import com.sprinboot.dazuoye.pojo.User;
+import com.sprinboot.dazuoye.pojo.addressInfo;
 
 import java.util.List;
 
@@ -36,4 +37,7 @@ public interface UserServices {
 
     //    查询男女人数（admin）展示
     User getNumOfUserSex() throws Exception;
+
+    //    获取不同地区人数比例
+    List<addressInfo> getAddressNum() throws Exception;
 }

@@ -3,6 +3,7 @@ package com.sprinboot.dazuoye.service.serviceImpl;
 
 import com.sprinboot.dazuoye.dao.UserDao;
 import com.sprinboot.dazuoye.pojo.User;
+import com.sprinboot.dazuoye.pojo.addressInfo;
 import com.sprinboot.dazuoye.service.UserServices;
 import org.springframework.stereotype.Service;
 
@@ -131,6 +132,15 @@ public class UserServicesImpl implements UserServices {
             return user;
         }
         return null;
+    }
+
+
+    //    获取不同地区人数
+    @Override
+    public List<addressInfo> getAddressNum() throws Exception {
+        List<addressInfo> addressInfos = new ArrayList<>();
+        addressInfos = userDao.getAdressNum();
+        return addressInfos;
     }
 
 
