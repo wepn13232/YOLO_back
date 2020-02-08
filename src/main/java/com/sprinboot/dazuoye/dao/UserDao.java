@@ -61,6 +61,6 @@ public interface UserDao {
     User getNumOfUserSex() throws Exception;
 
     //    获取不同地区的人数比例
-    @Select("select address, count(*) as sum from userinfo group by address")
+    @Select("select address, count(*) as num from userinfo group by address")
     List<addressInfo> getAdressNum() throws Exception;
 }

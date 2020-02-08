@@ -2,7 +2,7 @@ package com.sprinboot.dazuoye.pojo;
 
 public class addressInfo {
     private String address;
-    private Integer sum;
+    private Integer num;
 
     public addressInfo() {
         super();
@@ -16,16 +16,16 @@ public class addressInfo {
         this.address = address;
     }
 
-    public Integer getSum() {
-        return sum;
+    public Integer getNum() {
+        return num;
     }
 
-    public void setSum(Integer sum) {
-        this.sum = sum;
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
-    public addressInfo(String address, Integer sum) {
+    public addressInfo(String address, Integer num) {
         this.address = address;
-        this.sum = sum;
+        this.num = num;
     }
 }
