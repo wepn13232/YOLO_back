@@ -4,10 +4,23 @@ public class Sub {
     private Integer id;
     private String subUser;
     private Integer picId;
+    private Integer subCount;
 
 
     public Sub() {
         super();
+    }
+
+    public Integer getSubCount() {
+        return subCount;
+    }
+
+    public void setSubCount(Integer subCount) {
+        this.subCount = subCount;
+    }
+
+    public Sub(String subUser) {
+        this.subUser = subUser;
     }
 
     public Integer getId() {

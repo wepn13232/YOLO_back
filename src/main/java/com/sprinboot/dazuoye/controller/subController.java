@@ -62,4 +62,45 @@ public class subController {
         return jsonObject.toJSONString();
     }
 
+
+    //    取消点赞
+    @RequestMapping(value = "/cancelSub")
+    @ResponseBody
+    public String cancelSub(@RequestParam Integer picId, @RequestParam String subUser,
+                            ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject jsonObject = new JSONObject();
+        if (subServices.cancelSub(picId, subUser) > 0) {
+            jsonObject.put("status", "200");
+            jsonObject.put("desc", "用户取消点赞");
+            jsonObject.put("data", "");
+        } else {
+            jsonObject.put("status", "201");
+            jsonObject.put("desc", "用户取消点赞失败");
+            jsonObject.put("data", "");
+        }
+        return jsonObject.toJSONString();
+    }
+
+    //    获取点赞的人数
+    @RequestMapping(value = "/getSubCount")
+    @ResponseBody
+    public String getSubCount(@RequestParam Integer picId,
+                              ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject jsonObject = new JSONObject();
+        Sub sub = subServices.getSubCount(picId);
+        jsonObject.put("status", "200");
+        jsonObject.put("desc", "获取点赞数成功");
+        jsonObject.put("data", sub);
+
+        return jsonObject.toJSONString();
+    }
+
 }

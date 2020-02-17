@@ -21,6 +21,12 @@ public class subServicesImpl implements subServices {
         return subDao.insertSub(sub);
     }
 
+    //    取消点赞
+    @Override
+    public int cancelSub(Integer picId,String subUser) throws Exception {
+        return subDao.cancelSub(picId,subUser);
+    }
+
     //    获取用户是否点赞
     @Override
     public Sub subOrNot(String subUser, Integer picId) throws Exception {
@@ -30,5 +36,14 @@ public class subServicesImpl implements subServices {
             return sub;
         }
         return null;
+    }
+
+
+//    获取点赞的人数
+    @Override
+    public Sub getSubCount(Integer picId) throws Exception {
+        Sub sub = new Sub();
+        sub=subDao.getSubCount(picId);
+        return sub;
     }
 }
