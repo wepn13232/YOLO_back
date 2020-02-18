@@ -6,20 +6,18 @@ public class PicWall {
     private String content;
     private String username;
     private String name;
-    private String like_username;
 
     public PicWall() {
         super();
     }
 
 
-    public PicWall(Integer id, String src, String content, String username, String name, String like_username) {
+    public PicWall(Integer id, String src, String content, String username, String name) {
         this.id = id;
         this.src = src;
         this.content = content;
         this.username = username;
         this.name = name;
-        this.like_username = like_username;
     }
 
     public Integer getId() {
@@ -62,11 +60,4 @@ public class PicWall {
         this.name = name;
     }
 
-    public String getLike_username() {
-        return like_username;
-    }
-
-    public void setLike_username(String like_username) {
-        this.like_username = like_username;
-    }
 }

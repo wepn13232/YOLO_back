@@ -11,4 +11,7 @@ public interface picWallServices {
 
     //    添加照片
     int insertPic(String src, String content, String username, String name) throws Exception;
+
+    //    删除照片
+    int deletePic(Integer id) throws Exception;
 }

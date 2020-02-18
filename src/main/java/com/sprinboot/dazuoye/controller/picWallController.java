@@ -44,19 +44,40 @@ public class picWallController {
     //    添加照片
     @RequestMapping(value = "/insertPic")
     @ResponseBody
-    public String insertPic(@RequestParam String src,@RequestParam String content,@RequestParam String username,@RequestParam String name, ServletResponse res) throws Exception {
+    public String insertPic(@RequestParam String src, @RequestParam String content, @RequestParam String username, @RequestParam String name, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        if (picWallServices.insertPic(src,content,username,name)>0) {
+        if (picWallServices.insertPic(src, content, username, name) > 0) {
             json.put("data", "");
             json.put("desc", "照片添加成功！");
             json.put("status", "200");
         } else {
             json.put("data", "");
             json.put("desc", "照片添加失败！");
+            json.put("status", "201");
+        }
+        return json.toJSONString();
+    }
+
+    //    删除照片
+    @RequestMapping(value = "/deletePic")
+    @ResponseBody
+    public String deletePic(@RequestParam Integer id, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        if (picWallServices.deletePic(id) > 0) {
+            json.put("data", "");
+            json.put("desc", "照片删除成功！");
+            json.put("status", "200");
+        } else {
+            json.put("data", "");
+            json.put("desc", "照片删除失败！");
             json.put("status", "201");
         }
         return json.toJSONString();

@@ -1,10 +1,7 @@
 package com.sprinboot.dazuoye.dao;
 
 import com.sprinboot.dazuoye.pojo.PicWall;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +17,8 @@ public interface picWallDao {
     //    添加照片
     @Insert("insert into picWall(src,content,username,name) values(#{src},#{content},#{username},#{name})")
     int insertPic(PicWall picWall) throws Exception;
+
+    //    删除照片
+    @Delete("delete from picWall where id=#{id}")
+    int deletePic(@Param("id") Integer id) throws Exception;
 }

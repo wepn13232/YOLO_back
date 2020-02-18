@@ -26,7 +26,7 @@ public class picWallServicesImpl implements picWallServices {
     }
 
 
-//    添加照片
+    //    添加照片
     @Override
     public int insertPic(String src, String content, String username, String name) throws Exception {
         PicWall picWall = new PicWall();
@@ -35,5 +35,12 @@ public class picWallServicesImpl implements picWallServices {
         picWall.setUsername(username);
         picWall.setName(name);
         return picWallDao.insertPic(picWall);
+    }
+
+
+    //    删除照片
+    @Override
+    public int deletePic(Integer id) throws Exception {
+        return picWallDao.deletePic(id);
     }
 }
