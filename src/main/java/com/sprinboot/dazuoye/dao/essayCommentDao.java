@@ -18,7 +18,7 @@ public interface essayCommentDao {
             "#{comment},#{date},#{essayId})")
     int insertComment(EssayComment essayComment) throws Exception;
 
-    //    查看评论
-    @Select("select * from essayComment where essayId=#{essayId}")
+    //    查看评论（最新倒叙）
+    @Select("select * from essayComment where essayId=#{essayId} order by id desc")
     List<EssayComment> getComment(@Param("essayId") Integer essayId) throws Exception;
 }
