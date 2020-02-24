@@ -13,6 +13,7 @@ public class User implements Serializable {
     private String appid; //直播编码
     private String userSum; //用户简介
     private String liveStatus; //直播状态
+    private String picUrl; //头像url
 
     private String male;
     private String female;
@@ -22,6 +23,18 @@ public class User implements Serializable {
         super();
     }
 
+
+    public User(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
 
     public User(String male, String female) {
         this.male = male;

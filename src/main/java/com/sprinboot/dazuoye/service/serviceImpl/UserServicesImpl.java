@@ -43,6 +43,7 @@ public class UserServicesImpl implements UserServices {
         user.setSex(sex);
         user.setName(name);
         user.setLiveStatus("0"); //默认0，申请了直播编码才可以开
+        user.setPicUrl("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"); //默认注册头像
         return userDao.addUser(user);
     }
 
@@ -83,13 +84,13 @@ public class UserServicesImpl implements UserServices {
 
     //    编辑（更新）用户信息
     @Override
-    public int changeUserInfo(String userSum, String address, String email, String appid, String username) throws Exception {
+    public int changeUserInfo(String userSum, String address, String email, String appid, String username,String picUrl) throws Exception {
         User user = new User();
         user.setAppid(appid);
         user.setUserSum(userSum);
         user.setAddress(address);
         user.setEmail(email);
-        return userDao.changeUserInfo(userSum, address, email, appid, username);
+        return userDao.changeUserInfo(userSum, address, email, appid,picUrl,username);
     }
 
 
