@@ -1,10 +1,7 @@
 package com.sprinboot.dazuoye.dao;
 
 import com.sprinboot.dazuoye.pojo.EssayComment;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +18,10 @@ public interface essayCommentDao {
     //    查看评论（最新倒叙）
     @Select("select * from essayComment where essayId=#{essayId} order by id desc")
     List<EssayComment> getComment(@Param("essayId") Integer essayId) throws Exception;
+
+
+    //    删除评论
+    @Delete("delete from essayComment where essayId=#{essayId} and id =#{id}")
+    int deleteComment(@Param("essayId") Integer essayId, @Param("id") Integer id) throws Exception;
+
 }

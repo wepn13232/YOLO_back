@@ -26,12 +26,20 @@ public class essayCommentServiceImpl implements essayCommentServices {
         return essayCommentDao.insertComment(essayComment);
     }
 
+
     //    获取评论
     @Override
     public List<EssayComment> getComment(Integer essayId) throws Exception {
         List<EssayComment> essayComments = new ArrayList<>();
         essayComments = essayCommentDao.getComment(essayId);
         return essayComments;
+    }
+
+
+    //    删除评论
+    @Override
+    public int deleteComment(Integer essayId, Integer id) throws Exception {
+        return essayCommentDao.deleteComment(essayId, id);
     }
 
 

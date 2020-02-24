@@ -63,4 +63,27 @@ public class essayCommentControler {
         return json.toJSONString();
     }
 
+
+    //    删除评论
+    @RequestMapping(value = "/deleteComment")
+    @ResponseBody
+    public String deleteComment(@RequestParam Integer essayId, @RequestParam Integer id, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        if (essayCommentServices.deleteComment(essayId, id) > 0) {
+            json.put("data", "");
+            json.put("desc", "删除评论成功！");
+            json.put("status", "200");
+        } else {
+            json.put("data", "");
+            json.put("desc", "删除评论失败");
+            json.put("status", "201");
+        }
+        return json.toJSONString();
+    }
+
+
 }
