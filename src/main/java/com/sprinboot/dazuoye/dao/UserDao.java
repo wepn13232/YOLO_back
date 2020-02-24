@@ -18,19 +18,19 @@ public interface UserDao {
 
 
     //    注册
-    @Insert("insert into userinfo(username,name,password,email,sex,address,liveStatus) values(#{username},#{name},#{password},#{email},#{sex},#{address},#{liveStatus})")
+    @Insert("insert into userinfo(username,name,password,email,sex,address,liveStatus,picUrl) values(#{username},#{name},#{password},#{email},#{sex},#{address},#{liveStatus},#{picUrl})")
     int addUser(User user) throws Exception;
 
 
     //    查询用户信息（展示用，除重要信息）(不传username查全部)
-    @Select("<script>select username,name,email,sex,address,liveStatus,userSum from userinfo" +
+    @Select("<script>select username,name,email,sex,address,liveStatus,userSum,picUrl from userinfo" +
             "<if test='username!=null'> where username=#{username}</if>" +
             "</script> ")
     List<User> selectSomeUser(@Param("username") String username) throws Exception;
 
 
-    //    搜索框根据用户昵称查询用户信息
-    @Select("select username,name,email,sex,address,liveStatus,userSum,appid from userinfo where name=#{name}")
+    //    搜索框根据用户昵称查询用户信息（除重要信息）
+    @Select("select username,name,email,sex,address,liveStatus,userSum,picUrl from userinfo where name=#{name}")
     User selectUserByName(@Param("name") String name) throws Exception;
 
 
@@ -40,8 +40,8 @@ public interface UserDao {
 
 
     //    编辑（更新）用户信息
-    @Update("update userinfo set userSum=#{userSum},address=#{address},email=#{email},appid=#{appid} where username=#{username}")
-    int changeUserInfo(@Param("userSum") String userSum, @Param("address") String address, @Param("email") String email, @Param("appid") String appid,
+    @Update("update userinfo set userSum=#{userSum},address=#{address},email=#{email},appid=#{appid},picUrl={picUrl} where username=#{username}")
+    int changeUserInfo(@Param("userSum") String userSum, @Param("address") String address, @Param("email") String email, @Param("appid") String appid,@Param("picUrl") String picUrl ,
                        @Param("username") String username) throws Exception;
 
     //    查询appid
