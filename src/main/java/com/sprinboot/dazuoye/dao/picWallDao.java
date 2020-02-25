@@ -11,7 +11,7 @@ import java.util.List;
 public interface picWallDao {
 
     //    获取全部图片
-    @Select("select * from picWall")
+    @Select("select * from picWall order by id desc")
     List<PicWall> getAllPicShows() throws Exception;
 
     //    添加照片

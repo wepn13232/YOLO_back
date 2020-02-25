@@ -14,6 +14,7 @@ public class User implements Serializable {
     private String userSum; //用户简介
     private String liveStatus; //直播状态
     private String picUrl; //头像url
+    private String userScore; //用户评分
 
     private String male;
     private String female;
@@ -21,40 +22,6 @@ public class User implements Serializable {
 
     public User() {
         super();
-    }
-
-
-    public User(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
-    public String getPicUrl() {
-        return picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
-    public User(String male, String female) {
-        this.male = male;
-        this.female = female;
-    }
-
-    public String getMale() {
-        return male;
-    }
-
-    public void setMale(String male) {
-        this.male = male;
-    }
-
-    public String getFemale() {
-        return female;
-    }
-
-    public void setFemale(String female) {
-        this.female = female;
     }
 
     public String getUsername() {
@@ -137,7 +104,39 @@ public class User implements Serializable {
         this.liveStatus = liveStatus;
     }
 
-    public User(String username, String name, String password, Integer id, String email, String sex, String address, String appid, String userSum, String liveStatus) {
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getUserScore() {
+        return userScore;
+    }
+
+    public void setUserScore(String userScore) {
+        this.userScore = userScore;
+    }
+
+    public String getMale() {
+        return male;
+    }
+
+    public void setMale(String male) {
+        this.male = male;
+    }
+
+    public String getFemale() {
+        return female;
+    }
+
+    public void setFemale(String female) {
+        this.female = female;
+    }
+
+    public User(String username, String name, String password, Integer id, String email, String sex, String address, String appid, String userSum, String liveStatus, String picUrl, String userScore, String male, String female) {
         this.username = username;
         this.name = name;
         this.password = password;
@@ -148,5 +147,9 @@ public class User implements Serializable {
         this.appid = appid;
         this.userSum = userSum;
         this.liveStatus = liveStatus;
+        this.picUrl = picUrl;
+        this.userScore = userScore;
+        this.male = male;
+        this.female = female;
     }
 }

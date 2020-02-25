@@ -24,7 +24,7 @@ public interface UserServices {
     int addAppId(String appid, String username) throws Exception;
 
     //    编辑（更新用户信息）
-    int changeUserInfo(String userSum, String address, String email, String appid, String username,String picUrl) throws Exception;
+    int changeUserInfo(String userSum, String address, String email, String appid, String username, String picUrl) throws Exception;
 
     //    查询appid
     User selectAppid(String username) throws Exception;
@@ -40,4 +40,11 @@ public interface UserServices {
 
     //    获取不同地区人数比例
     List<addressInfo> getAddressNum() throws Exception;
+
+    //    更新用户分数
+    int updateUserScore(String userScore, String username) throws Exception;
+
+    //    根据用户评分获取用户
+    List<User> getUserByScore() throws Exception;
+
 }

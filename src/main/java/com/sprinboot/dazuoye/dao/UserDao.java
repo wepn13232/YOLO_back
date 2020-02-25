@@ -23,7 +23,7 @@ public interface UserDao {
 
 
     //    查询用户信息（展示用，除重要信息）(不传username查全部)
-    @Select("<script>select username,name,email,sex,address,liveStatus,userSum,picUrl from userinfo" +
+    @Select("<script>select username,name,email,sex,address,liveStatus,userSum,picUrl,userScore from userinfo" +
             "<if test='username!=null'> where username=#{username}</if>" +
             "</script> ")
     List<User> selectSomeUser(@Param("username") String username) throws Exception;
@@ -41,7 +41,7 @@ public interface UserDao {
 
     //    编辑（更新）用户信息
     @Update("update userinfo set userSum=#{userSum},address=#{address},email=#{email},appid=#{appid},picUrl={picUrl} where username=#{username}")
-    int changeUserInfo(@Param("userSum") String userSum, @Param("address") String address, @Param("email") String email, @Param("appid") String appid,@Param("picUrl") String picUrl ,
+    int changeUserInfo(@Param("userSum") String userSum, @Param("address") String address, @Param("email") String email, @Param("appid") String appid, @Param("picUrl") String picUrl,
                        @Param("username") String username) throws Exception;
 
     //    查询appid
@@ -63,4 +63,13 @@ public interface UserDao {
     //    获取不同地区的人数比例
     @Select("select address, count(*) as num from userinfo group by address")
     List<addressInfo> getAdressNum() throws Exception;
+
+    //    评分后插入分数至用户信息
+    @Update("update userinfo set userScore = #{userScore} where username=#{username}")
+    int updateUserScore(@Param("userScore") String userScore, @Param("username") String username) throws Exception;
+
+    //    根据用户评分获取用户
+    @Select("select username,name,userScore,userSum from userinfo order by userScore desc")
+    List<User> getUserByScore() throws Exception;
+
 }

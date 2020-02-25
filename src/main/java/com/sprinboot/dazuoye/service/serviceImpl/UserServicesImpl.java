@@ -84,13 +84,13 @@ public class UserServicesImpl implements UserServices {
 
     //    编辑（更新）用户信息
     @Override
-    public int changeUserInfo(String userSum, String address, String email, String appid, String username,String picUrl) throws Exception {
+    public int changeUserInfo(String userSum, String address, String email, String appid, String username, String picUrl) throws Exception {
         User user = new User();
         user.setAppid(appid);
         user.setUserSum(userSum);
         user.setAddress(address);
         user.setEmail(email);
-        return userDao.changeUserInfo(userSum, address, email, appid,picUrl,username);
+        return userDao.changeUserInfo(userSum, address, email, appid, picUrl, username);
     }
 
 
@@ -142,6 +142,19 @@ public class UserServicesImpl implements UserServices {
         List<addressInfo> addressInfos = new ArrayList<>();
         addressInfos = userDao.getAdressNum();
         return addressInfos;
+    }
+
+    //    更新用户分数
+    @Override
+    public int updateUserScore(String userScore, String username) throws Exception {
+        return userDao.updateUserScore(userScore, username);
+    }
+
+
+    //    根据用户分数获取
+    @Override
+    public List<User> getUserByScore() throws Exception {
+        return userDao.getUserByScore();
     }
 
 
