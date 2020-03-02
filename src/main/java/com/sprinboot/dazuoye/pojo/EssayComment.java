@@ -7,6 +7,20 @@ public class EssayComment {
     private Integer essayId;
     private String date;
     private String comment;
+    private String picUrl;
+
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public EssayComment(String picUrl) {
+        this.picUrl = picUrl;
+    }
 
     public EssayComment() {
         super();

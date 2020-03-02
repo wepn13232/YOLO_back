@@ -40,7 +40,7 @@ public interface UserDao {
 
 
     //    编辑（更新）用户信息
-    @Update("update userinfo set userSum=#{userSum},address=#{address},email=#{email},appid=#{appid},picUrl={picUrl} where username=#{username}")
+    @Update("update userinfo set userSum=#{userSum},address=#{address},email=#{email},appid=#{appid},picUrl=#{picUrl} where username=#{username}")
     int changeUserInfo(@Param("userSum") String userSum, @Param("address") String address, @Param("email") String email, @Param("appid") String appid, @Param("picUrl") String picUrl,
                        @Param("username") String username) throws Exception;
 
@@ -69,7 +69,7 @@ public interface UserDao {
     int updateUserScore(@Param("userScore") String userScore, @Param("username") String username) throws Exception;
 
     //    根据用户评分获取用户
-    @Select("select username,name,userScore,userSum from userinfo order by userScore desc")
+    @Select("select username,name,userScore,userSum,picUrl from userinfo order by userScore desc")
     List<User> getUserByScore() throws Exception;
 
 }

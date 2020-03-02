@@ -8,10 +8,24 @@ public class Host {
     private String title;
     private String roomSum;
     private Integer isLive;
+    private String picUrl;
+
+    public Host(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
 
     public Host() {
         super();
     }
+
 
     public Integer getId() {
         return id;

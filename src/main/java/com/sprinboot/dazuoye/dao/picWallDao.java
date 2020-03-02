@@ -11,11 +11,11 @@ import java.util.List;
 public interface picWallDao {
 
     //    获取全部图片
-    @Select("select * from picWall order by id desc")
+    @Select("select p.*, u.picUrl from picWall p ,userinfo u where p.username = u.username order by p.id desc")
     List<PicWall> getAllPicShows() throws Exception;
 
     //    添加照片
-    @Insert("insert into picWall(src,content,username,name) values(#{src},#{content},#{username},#{name})")
+    @Insert("insert into picWall(src,content,username,name,picUrl) values(#{src},#{content},#{username},#{name})")
     int insertPic(PicWall picWall) throws Exception;
 
     //    删除照片

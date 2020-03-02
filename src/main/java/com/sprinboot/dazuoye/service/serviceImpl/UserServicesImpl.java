@@ -90,7 +90,8 @@ public class UserServicesImpl implements UserServices {
         user.setUserSum(userSum);
         user.setAddress(address);
         user.setEmail(email);
-        return userDao.changeUserInfo(userSum, address, email, appid, picUrl, username);
+        user.setPicUrl(picUrl);
+        return userDao.changeUserInfo(userSum, address, email, appid,picUrl,username);
     }
 
 

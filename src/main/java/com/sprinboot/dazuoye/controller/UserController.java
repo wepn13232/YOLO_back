@@ -154,7 +154,7 @@ public class UserController {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject jsonObject = new JSONObject();
-        if (userServices.changeUserInfo(userSum, address, email, appid, username, picUrl) > 0) {
+        if (userServices.changeUserInfo(userSum, address, email, appid,username,picUrl) > 0) {
             jsonObject.put("status", "200");
             jsonObject.put("desc", "修改用户信息成功");
             jsonObject.put("data", "");
