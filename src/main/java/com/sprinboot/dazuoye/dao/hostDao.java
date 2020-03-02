@@ -11,13 +11,13 @@ import java.util.List;
 public interface hostDao {
 
     //    申请appid时插入开播主播信息
-    @Insert("insert into host(username,name,appid,title,roomSum,isLive) values(#{username},#{name},#{appid},#{title},#{roomSum},#{isLive})")
+    @Insert("insert into host(username,name,appid,title,roomSum,isLive,picUrl) values(#{username},#{name},#{appid},#{title},#{roomSum},#{isLive},#{picUrl})")
     int insertHost(Host host) throws Exception;
 
     //    获取主播信息
     @Select("<script>" +
-            "select id,username,name,title,roomSum,isLive from host<if test='username!=null'>where username=#{username}</if> " +
-            " </script>")
+            "select h.* , u.picUrl from host h,userinfo u where h.username = u.username" +
+            " <if test='username!=null'>and h.username=#{username}</if> </script>")
     List<Host> getHostInfo(@Param("username") String username) throws Exception;
 
     //    admin获取所有主播信息

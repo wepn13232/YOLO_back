@@ -6,11 +6,24 @@ public class PicWall {
     private String content;
     private String username;
     private String name;
+    private String picUrl;
+
 
     public PicWall() {
         super();
     }
 
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public PicWall(String picUrl) {
+        this.picUrl = picUrl;
+    }
 
     public PicWall(Integer id, String src, String content, String username, String name) {
         this.id = id;

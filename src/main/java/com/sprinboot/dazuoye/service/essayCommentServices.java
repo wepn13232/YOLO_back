@@ -11,4 +11,7 @@ public interface essayCommentServices {
 
     //    查看评论
     List<EssayComment> getComment(Integer essayId) throws Exception;
+
+    //    删除评论
+    int deleteComment(Integer essayId, Integer id) throws Exception;
 }

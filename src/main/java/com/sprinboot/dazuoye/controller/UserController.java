@@ -147,14 +147,14 @@ public class UserController {
     @RequestMapping(value = "/editUserInfo")
     @ResponseBody
     public String editUserInfo(@RequestParam(value = "userSum", required = false) String userSum, @RequestParam(value = "address", required = false) String address,
-                               @RequestParam(value = "email", required = false) String email, @RequestParam(value = "appid", required = false) String appid,@RequestParam(value = "picUrl", required = false) String picUrl,
+                               @RequestParam(value = "email", required = false) String email, @RequestParam(value = "appid", required = false) String appid, @RequestParam(value = "picUrl", required = false) String picUrl,
                                @RequestParam String username, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject jsonObject = new JSONObject();
-        if (userServices.changeUserInfo(userSum, address, email, appid, username,picUrl) > 0) {
+        if (userServices.changeUserInfo(userSum, address, email, appid,username,picUrl) > 0) {
             jsonObject.put("status", "200");
             jsonObject.put("desc", "修改用户信息成功");
             jsonObject.put("data", "");
@@ -275,6 +275,51 @@ public class UserController {
         } else {
             json.put("status", "201");
             json.put("desc", "无数据");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
+
+    //更新用户分数
+    @RequestMapping(value = "/updateUserScore")
+    @ResponseBody
+    public String updateUserScore(@RequestParam String userScore, @RequestParam String username, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        if (userServices.updateUserScore(userScore, username) > 0) {
+            json.put("data", "");
+            json.put("desc", "更新用户分数成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "更新用户数据失败");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
+
+    //根据用户分数获取数据
+    @RequestMapping(value = "/getUserByScore")
+    @ResponseBody
+    public String getUserByScore(ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        List<User> user = userServices.getUserByScore();
+        if (user !=null) {
+            json.put("data", user);
+            json.put("desc", "用户数据获取成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "无数据 null");
             json.put("data", "");
         }
         return json.toJSONString();
