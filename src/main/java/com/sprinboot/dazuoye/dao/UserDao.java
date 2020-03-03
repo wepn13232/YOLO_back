@@ -1,6 +1,7 @@
 package com.sprinboot.dazuoye.dao;
 
 
+import com.sprinboot.dazuoye.pojo.Host;
 import com.sprinboot.dazuoye.pojo.User;
 import com.sprinboot.dazuoye.pojo.addressInfo;
 import org.apache.ibatis.annotations.*;
@@ -18,24 +19,24 @@ public interface UserDao {
 
 
     //    注册
-    @Insert("insert into userinfo(username,name,password,email,sex,address,liveStatus,picUrl) values(#{username},#{name},#{password},#{email},#{sex},#{address},#{liveStatus},#{picUrl})")
+    @Insert("insert into userinfo(username,name,password,email,sex,address,picUrl) values(#{username},#{name},#{password},#{email},#{sex},#{address},#{picUrl})")
     int addUser(User user) throws Exception;
 
 
     //    查询用户信息（展示用，除重要信息）(不传username查全部)
-    @Select("<script>select username,name,email,sex,address,liveStatus,userSum,picUrl,userScore from userinfo" +
+    @Select("<script>select username,name,email,sex,address,userSum,picUrl,userScore from userinfo" +
             "<if test='username!=null'> where username=#{username}</if>" +
             "</script> ")
     List<User> selectSomeUser(@Param("username") String username) throws Exception;
 
 
     //    搜索框根据用户昵称查询用户信息（除重要信息）
-    @Select("select username,name,email,sex,address,liveStatus,userSum,picUrl from userinfo where name=#{name}")
+    @Select("select username,name,email,sex,address,userSum,picUrl from userinfo where name=#{name}")
     User selectUserByName(@Param("name") String name) throws Exception;
 
 
     //    申请直播编码
-    @Update("update  userinfo set appid=#{appid} , liveStatus='1' where username=#{username}")
+    @Update("update host set appid=#{appid} , liveStatus='1' where username=#{username}")
     int addAppId(@Param("appid") String appid, @Param("username") String username) throws Exception;
 
 
@@ -48,12 +49,16 @@ public interface UserDao {
     @Select("select appid from userinfo where username = #{username}")
     User selectAppid(@Param("username") String username) throws Exception;
 
-    //    获取appid不为空的字段（即获取主播）
-    @Select("select * from userinfo where appid != ''")
-    List<User> adminGetHost() throws Exception;
+    //    获取主播
+    @Select("select * from host")
+    List<Host> adminGetHost() throws Exception;
+
+    //    admin模糊查询用户
+    @Select("select * from host where name like '%${name}%'")
+    List<Host> adminGetHostByFuzzy(@Param("name") String name) throws Exception;
 
     //    封禁直播\回复直播
-    @Update("update userinfo set liveStatus = #{liveStatus} where username = #{username}")
+    @Update("update host set liveStatus = #{liveStatus} where username = #{username}")
     int banLive(@Param("liveStatus") String liveStatus, @Param("username") String username) throws Exception;
 
     //    查询男女人数（admin）展示

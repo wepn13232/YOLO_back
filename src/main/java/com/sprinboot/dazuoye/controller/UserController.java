@@ -1,6 +1,7 @@
 package com.sprinboot.dazuoye.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sprinboot.dazuoye.pojo.Host;
 import com.sprinboot.dazuoye.pojo.User;
 import com.sprinboot.dazuoye.pojo.addressInfo;
 import com.sprinboot.dazuoye.service.UserServices;
@@ -154,7 +155,7 @@ public class UserController {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject jsonObject = new JSONObject();
-        if (userServices.changeUserInfo(userSum, address, email, appid,username,picUrl) > 0) {
+        if (userServices.changeUserInfo(userSum, address, email, appid, username, picUrl) > 0) {
             jsonObject.put("status", "200");
             jsonObject.put("desc", "修改用户信息成功");
             jsonObject.put("data", "");
@@ -199,9 +200,9 @@ public class UserController {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        List<User> users = userServices.adminGetHost();
-        if (users != null) {
-            json.put("data", users);
+        List<Host> hosts = userServices.adminGetHost();
+        if (hosts != null) {
+            json.put("data", hosts);
             json.put("desc", "查询成功");
             json.put("status", "200");
         } else {
@@ -313,8 +314,31 @@ public class UserController {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
         List<User> user = userServices.getUserByScore();
-        if (user !=null) {
+        if (user != null) {
             json.put("data", user);
+            json.put("desc", "用户数据获取成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "无数据 null");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
+
+    //admin模糊查询用户
+    @RequestMapping(value = "/getHostFuzzy")
+    @ResponseBody
+    public String getHostFuzzy(@RequestParam String name, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        List<Host> hosts = userServices.adminGetHostByFuzzy(name);
+        if (hosts != null) {
+            json.put("data", hosts);
             json.put("desc", "用户数据获取成功");
             json.put("status", "200");
         } else {
