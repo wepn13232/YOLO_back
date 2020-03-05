@@ -77,4 +77,12 @@ public interface UserDao {
     @Select("select username,name,userScore,userSum,picUrl from userinfo order by userScore desc")
     List<User> getUserByScore() throws Exception;
 
+    //    重置前确认用户信息
+    @Select("select * from userinfo where username=#{username} and name=#{name} and email=#{email} and questionT=#{questionT} and questionC=#{questionC}")
+    User userCofirm(@Param("username") String username, @Param("name") String name, @Param("email") String email
+            , @Param("questionT") Integer questionT, @Param("questionC") String questionC) throws Exception;
+
+    //    重置密码
+    @Update("update userinfo set password =#{password} where username=#{username}")
+    int resetPassword(@Param("password") String password) throws Exception;
 }

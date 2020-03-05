@@ -349,5 +349,51 @@ public class UserController {
         return json.toJSONString();
     }
 
+
+    //重置前确认用户信息
+    @RequestMapping(value = "/userConfirm")
+    @ResponseBody
+    public String userConfirm(@RequestParam String username, @RequestParam String name, @RequestParam String email,
+                              @RequestParam Integer questionT, @RequestParam String questionC, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        User user = userServices.userConfirm(username, name, email, questionT, questionC);
+        if (user != null) {
+            json.put("data", "");
+            json.put("desc", "用户验证成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "无数据 null，验证失败");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
+
+    //重置密码
+    @RequestMapping(value = "/resetPassword")
+    @ResponseBody
+    public String resetPassword(@RequestParam String password, ServletResponse res) throws Exception {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        JSONObject json = new JSONObject();
+        if (userServices.resetPassword(password) > 0) {
+            json.put("data", "");
+            json.put("desc", "修改密码成功");
+            json.put("status", "200");
+        } else {
+            json.put("status", "201");
+            json.put("desc", "修改密码失败");
+            json.put("data", "");
+        }
+        return json.toJSONString();
+    }
+
 }
 

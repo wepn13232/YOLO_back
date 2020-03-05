@@ -51,4 +51,9 @@ public interface UserServices {
     //    admin模糊查询用户
     List<Host> adminGetHostByFuzzy(String name) throws Exception;
 
+    //    重置前确认用户信息
+    User userConfirm(String username, String name, String email, Integer questionT, String questionC) throws Exception;
+
+    //    重置密码
+    int resetPassword(String password) throws Exception;
 }

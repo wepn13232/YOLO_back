@@ -164,5 +164,17 @@ public class UserServicesImpl implements UserServices {
         return userDao.adminGetHostByFuzzy(name);
     }
 
+    //    重置前确认用户信息
+    @Override
+    public User userConfirm(String username, String name, String email, Integer questionT, String questionC) throws Exception {
+        return userDao.userCofirm(username, name, email, questionT, questionC);
+    }
+
+    //    重置密码
+    @Override
+    public int resetPassword(String password) throws Exception {
+        return userDao.resetPassword(password);
+    }
+
 
 }

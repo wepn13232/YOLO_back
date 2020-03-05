@@ -18,9 +18,34 @@ public class User implements Serializable {
     private String male;
     private String female;
 
+    private Integer questionT; //安全问题
+    private String questionC; //安全问题答案
+
 
     public User() {
         super();
+    }
+
+
+    public Integer getQuestionT() {
+        return questionT;
+    }
+
+    public void setQuestionT(Integer questionT) {
+        this.questionT = questionT;
+    }
+
+    public String getQuestionC() {
+        return questionC;
+    }
+
+    public void setQuestionC(String questionC) {
+        this.questionC = questionC;
+    }
+
+    public User(Integer questionT, String questionC) {
+        this.questionT = questionT;
+        this.questionC = questionC;
     }
 
     public String getUsername() {
@@ -128,7 +153,7 @@ public class User implements Serializable {
         this.female = female;
     }
 
-    public User(String username, String name, String password, Integer id, String email, String sex, String address, String appid, String userSum,  String picUrl, String userScore, String male, String female) {
+    public User(String username, String name, String password, Integer id, String email, String sex, String address, String appid, String userSum, String picUrl, String userScore, String male, String female) {
         this.username = username;
         this.name = name;
         this.password = password;
