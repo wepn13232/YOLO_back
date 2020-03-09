@@ -84,5 +84,5 @@ public interface UserDao {
 
     //    重置密码
     @Update("update userinfo set password =#{password} where username=#{username}")
-    int resetPassword(@Param("password") String password) throws Exception;
+    int resetPassword(@Param("password") String password,@Param("username") String username) throws Exception;
 }

@@ -259,7 +259,7 @@ public class UserController {
         return json.toJSONString();
     }
 
-    //    获取男女人数
+    //    获取地区人数
     @RequestMapping(value = "/getAddressNum")
     @ResponseBody
     public String getAddressNum(ServletResponse res) throws Exception {
@@ -377,13 +377,13 @@ public class UserController {
     //重置密码
     @RequestMapping(value = "/resetPassword")
     @ResponseBody
-    public String resetPassword(@RequestParam String password, ServletResponse res) throws Exception {
+    public String resetPassword(@RequestParam String password, String username,ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject json = new JSONObject();
-        if (userServices.resetPassword(password) > 0) {
+        if (userServices.resetPassword(password,username) > 0) {
             json.put("data", "");
             json.put("desc", "修改密码成功");
             json.put("status", "200");

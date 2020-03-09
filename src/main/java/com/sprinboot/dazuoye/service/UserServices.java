@@ -55,5 +55,5 @@ public interface UserServices {
     User userConfirm(String username, String name, String email, Integer questionT, String questionC) throws Exception;
 
     //    重置密码
-    int resetPassword(String password) throws Exception;
+    int resetPassword(String password,String username) throws Exception;
 }

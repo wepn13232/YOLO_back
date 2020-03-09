@@ -172,8 +172,8 @@ public class UserServicesImpl implements UserServices {
 
     //    重置密码
     @Override
-    public int resetPassword(String password) throws Exception {
-        return userDao.resetPassword(password);
+    public int resetPassword(String password,String username) throws Exception {
+        return userDao.resetPassword(password,username);
     }
 
 
