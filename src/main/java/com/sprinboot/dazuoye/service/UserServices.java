@@ -1,5 +1,6 @@
 package com.sprinboot.dazuoye.service;
 
+import com.sprinboot.dazuoye.pojo.Host;
 import com.sprinboot.dazuoye.pojo.User;
 import com.sprinboot.dazuoye.pojo.addressInfo;
 
@@ -30,7 +31,7 @@ public interface UserServices {
     User selectAppid(String username) throws Exception;
 
     //    admin获取主播信息
-    List<User> adminGetHost() throws Exception;
+    List<Host> adminGetHost() throws Exception;
 
     //    封禁直播
     int banLive(String liveStatus, String username) throws Exception;
@@ -46,5 +47,8 @@ public interface UserServices {
 
     //    根据用户评分获取用户
     List<User> getUserByScore() throws Exception;
+
+    //    admin模糊查询用户
+    List<Host> adminGetHostByFuzzy(String name) throws Exception;
 
 }

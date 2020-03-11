@@ -9,23 +9,12 @@ public class Host {
     private String roomSum;
     private Integer isLive;
     private String picUrl;
+    private String liveStatus;
 
-    public Host(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
-    public String getPicUrl() {
-        return picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
 
     public Host() {
         super();
     }
-
 
     public Integer getId() {
         return id;
@@ -83,7 +72,23 @@ public class Host {
         this.isLive = isLive;
     }
 
-    public Host(Integer id, String username, String name, String appid, String title, String roomSum, Integer isLive) {
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getLiveStatus() {
+        return liveStatus;
+    }
+
+    public void setLiveStatus(String liveStatus) {
+        this.liveStatus = liveStatus;
+    }
+
+    public Host(Integer id, String username, String name, String appid, String title, String roomSum, Integer isLive, String picUrl, String liveStatus) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -91,5 +96,7 @@ public class Host {
         this.title = title;
         this.roomSum = roomSum;
         this.isLive = isLive;
+        this.picUrl = picUrl;
+        this.liveStatus = liveStatus;
     }
 }

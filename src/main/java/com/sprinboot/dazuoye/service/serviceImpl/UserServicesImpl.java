@@ -2,6 +2,7 @@ package com.sprinboot.dazuoye.service.serviceImpl;
 
 
 import com.sprinboot.dazuoye.dao.UserDao;
+import com.sprinboot.dazuoye.pojo.Host;
 import com.sprinboot.dazuoye.pojo.User;
 import com.sprinboot.dazuoye.pojo.addressInfo;
 import com.sprinboot.dazuoye.service.UserServices;
@@ -42,7 +43,6 @@ public class UserServicesImpl implements UserServices {
         user.setEmail(email);
         user.setSex(sex);
         user.setName(name);
-        user.setLiveStatus("0"); //默认0，申请了直播编码才可以开
         user.setPicUrl("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"); //默认注册头像
         return userDao.addUser(user);
     }
@@ -75,9 +75,9 @@ public class UserServicesImpl implements UserServices {
     //    申请直播编码
     @Override
     public int addAppId(String appid, String username) throws Exception {
-        User user = new User();
-        user.setAppid(appid);
-        user.setLiveStatus("1");
+        Host host = new Host();
+        host.setAppid(appid);
+        host.setLiveStatus("1");
         return userDao.addAppId(appid, username);
     }
 
@@ -91,7 +91,7 @@ public class UserServicesImpl implements UserServices {
         user.setAddress(address);
         user.setEmail(email);
         user.setPicUrl(picUrl);
-        return userDao.changeUserInfo(userSum, address, email, appid,picUrl,username);
+        return userDao.changeUserInfo(userSum, address, email, appid, picUrl, username);
     }
 
 
@@ -108,11 +108,11 @@ public class UserServicesImpl implements UserServices {
 
     //    admin获取主播信息
     @Override
-    public List<User> adminGetHost() throws Exception {
-        List<User> users = new ArrayList<>();
-        users = userDao.adminGetHost();
-        if (users != null) {
-            return users;
+    public List<Host> adminGetHost() throws Exception {
+        List<Host> hosts = new ArrayList<>();
+        hosts = userDao.adminGetHost();
+        if (hosts != null) {
+            return hosts;
         }
         return null;
     }
@@ -120,8 +120,8 @@ public class UserServicesImpl implements UserServices {
     //    封禁直播
     @Override
     public int banLive(String liveStatus, String username) throws Exception {
-        User user = new User();
-        user.setLiveStatus(liveStatus);
+        Host host = new Host();
+        host.setLiveStatus(liveStatus);
         return userDao.banLive(liveStatus, username);
     }
 
@@ -156,6 +156,12 @@ public class UserServicesImpl implements UserServices {
     @Override
     public List<User> getUserByScore() throws Exception {
         return userDao.getUserByScore();
+    }
+
+    //    admin模糊查询用户
+    @Override
+    public List<Host> adminGetHostByFuzzy(String name) throws Exception {
+        return userDao.adminGetHostByFuzzy(name);
     }
 
 

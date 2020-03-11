@@ -15,7 +15,7 @@ public interface picWallDao {
     List<PicWall> getAllPicShows() throws Exception;
 
     //    添加照片
-    @Insert("insert into picWall(src,content,username,name,picUrl) values(#{src},#{content},#{username},#{name})")
+    @Insert("insert into picWall(src,content,username,name) values(#{src},#{content},#{username},#{name})")
     int insertPic(PicWall picWall) throws Exception;
 
     //    删除照片

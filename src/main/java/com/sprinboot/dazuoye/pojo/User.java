@@ -12,7 +12,6 @@ public class User implements Serializable {
     private String address; //地址
     private String appid; //直播编码
     private String userSum; //用户简介
-    private String liveStatus; //直播状态
     private String picUrl; //头像url
     private String userScore; //用户评分
 
@@ -96,13 +95,6 @@ public class User implements Serializable {
         this.userSum = userSum;
     }
 
-    public String getLiveStatus() {
-        return liveStatus;
-    }
-
-    public void setLiveStatus(String liveStatus) {
-        this.liveStatus = liveStatus;
-    }
 
     public String getPicUrl() {
         return picUrl;
@@ -136,7 +128,7 @@ public class User implements Serializable {
         this.female = female;
     }
 
-    public User(String username, String name, String password, Integer id, String email, String sex, String address, String appid, String userSum, String liveStatus, String picUrl, String userScore, String male, String female) {
+    public User(String username, String name, String password, Integer id, String email, String sex, String address, String appid, String userSum,  String picUrl, String userScore, String male, String female) {
         this.username = username;
         this.name = name;
         this.password = password;
@@ -146,7 +138,6 @@ public class User implements Serializable {
         this.address = address;
         this.appid = appid;
         this.userSum = userSum;
-        this.liveStatus = liveStatus;
         this.picUrl = picUrl;
         this.userScore = userScore;
         this.male = male;
