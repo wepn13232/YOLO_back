@@ -13,7 +13,7 @@ public interface UserServices {
 
 
     //    增加用户（用户注册）
-    int addUser(String username, String name, String password, String sex, String email, String address) throws Exception;
+    int addUser(String username, String name, String password, String sex, String email, String address,Integer quyestionT,String questionC) throws Exception;
 
     //  查询用户具体信息
     List<User> selectSomeUser(String username) throws Exception;

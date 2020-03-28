@@ -35,7 +35,7 @@ public class UserServicesImpl implements UserServices {
 
     //    用户注册
     @Override
-    public int addUser(String username, String name, String password, String sex, String email, String address) throws Exception {
+    public int addUser(String username, String name, String password, String sex, String email, String address, Integer questionT, String questionC) throws Exception {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
@@ -43,6 +43,8 @@ public class UserServicesImpl implements UserServices {
         user.setEmail(email);
         user.setSex(sex);
         user.setName(name);
+        user.setQuestionT(questionT);
+        user.setQuestionC(questionC);
         user.setPicUrl("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"); //默认注册头像
         return userDao.addUser(user);
     }
@@ -172,8 +174,8 @@ public class UserServicesImpl implements UserServices {
 
     //    重置密码
     @Override
-    public int resetPassword(String password,String username) throws Exception {
-        return userDao.resetPassword(password,username);
+    public int resetPassword(String password, String username) throws Exception {
+        return userDao.resetPassword(password, username);
     }
 
 

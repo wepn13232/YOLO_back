@@ -11,7 +11,7 @@ import java.util.List;
 public interface hostDao {
 
     //    申请appid时插入开播主播信息
-    @Insert("insert into host(username,name,appid,title,roomSum,isLive,picUrl) values(#{username},#{name},#{appid},#{title},#{roomSum},#{isLive},#{picUrl})")
+    @Insert("insert into host(username,name,appid,title,roomSum,isLive,liveStatus) values(#{username},#{name},#{appid},#{title},#{roomSum},#{isLive},#{liveStatus})")
     int insertHost(Host host) throws Exception;
 
     //    获取主播信息

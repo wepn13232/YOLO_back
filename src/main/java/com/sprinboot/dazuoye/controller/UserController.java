@@ -56,14 +56,14 @@ public class UserController {
     @RequestMapping(value = "/doRegister")
     @ResponseBody
     public String doregister(@RequestParam String username, @RequestParam String name, @RequestParam String password,
-                             @RequestParam String sex, @RequestParam String email, @RequestParam String address,
-                             ServletResponse res) throws Exception {
+                             @RequestParam String sex, @RequestParam String email, @RequestParam String address,@RequestParam Integer questionT,
+                             @RequestParam String questionC, ServletResponse res) throws Exception {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         JSONObject jsonObject = new JSONObject();
-        if (userServices.addUser(username, name, password, sex, email, address) > 0) {
+        if (userServices.addUser(username, name, password, sex, email, address,questionT,questionC) > 0) {
             jsonObject.put("status", "200");
             jsonObject.put("desc", "注册成功");
             jsonObject.put("data", "");

@@ -19,7 +19,7 @@ public interface UserDao {
 
 
     //    注册
-    @Insert("insert into userinfo(username,name,password,email,sex,address,picUrl) values(#{username},#{name},#{password},#{email},#{sex},#{address},#{picUrl})")
+    @Insert("insert into userinfo(username,name,password,email,sex,address,picUrl,questionT,questionC) values(#{username},#{name},#{password},#{email},#{sex},#{address},#{picUrl},#{questionT},#{questionC})")
     int addUser(User user) throws Exception;
 
 
@@ -36,7 +36,7 @@ public interface UserDao {
 
 
     //    申请直播编码
-    @Update("update host set appid=#{appid} , liveStatus='1' where username=#{username}")
+    @Update("update userinfo set appid=#{appid} where username=#{username}")
     int addAppId(@Param("appid") String appid, @Param("username") String username) throws Exception;
 
 
